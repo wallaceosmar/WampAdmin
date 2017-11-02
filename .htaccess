@@ -1,0 +1,16 @@
+#
+<ifModule mod_rewrite.c>
+    RewriteEngine on
+    
+    RewriteBase /wampadmin/
+    
+    #future implementation
+    #RewriteRule ^([a-z]+)/([a-z]+)/project/([a-z]+)\.html$ $1-$2.php?_project=$3
+    #RewriteRule ^pages/([a-z]+)\.html$ plugin-page.php?page=$1
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)\.html$ $1.php
+    
+</ifModule>
+#
