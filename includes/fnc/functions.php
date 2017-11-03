@@ -25,6 +25,25 @@
  */
 
 /**
+ * Redirect the url
+ * 
+ * @param string $url Url
+ * @param int $statusCode
+ */
+function header_redirect ( $url, $statusCode = 303) {
+   header('Location: ' . $url, true, $statusCode);
+   exit(1);
+}
+
+/**
+ * 
+ * @return bool
+ */
+function is_ajax() {
+    return ( !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' );
+}
+
+/**
  * 
  * @param string $mehtod
  * 
@@ -36,10 +55,48 @@ function is_mehtod( $mehtod = 'get' ) {
 
 /**
  * 
- * @return bool
+ * @param string $path
+ * 
+ * @return string
  */
-function is_ajax() {
-    return ( !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' );
+function normalize_path( $path ) {
+    $path = str_replace( '\\', '/', $path );
+    $path = preg_replace( '|(?<=.)/+|', '/', $path );
+    if ( ':' === substr( $path, 1, 1 ) ) {
+        $path = ucfirst( $path );
+    }
+    return $path;
+}
+
+/**
+ * Merge user defined arguments into defaults array.
+ * 
+ * @param type $args
+ * @param type $defaults
+ * @return type
+ */
+function parse_args( $args, $defaults = '' ) {
+    if (is_object($args)) {
+        $r = get_object_vars($args);
+    } elseif (is_array($args)) {
+        $r = & $args;
+    } else {
+        wa_parse_str($args, $r);
+    }
+    
+    return is_array( $defaults ) ? array_merge($defaults, $r) : $r;
+}
+
+/**
+ * Parses a string into variables to be stored in an array.
+ * 
+ * @param type $string The string to be parsed.
+ * @param type $array Variables will be stored in this array
+ */
+function wa_parse_str( $string, &$array ) {
+    parse_str( $string, $array );
+    
+    $array = apply_filters( 'parse_str', $array );
 }
 
 /**
@@ -61,17 +118,3 @@ function rmdir_recursive($dir) {
     return rmdir($dir);
 }
 
-/**
- * 
- * @param string $path
- * 
- * @return string
- */
-function normalize_path( $path ) {
-    $path = str_replace( '\\', '/', $path );
-    $path = preg_replace( '|(?<=.)/+|', '/', $path );
-    if ( ':' === substr( $path, 1, 1 ) ) {
-        $path = ucfirst( $path );
-    }
-    return $path;
-}

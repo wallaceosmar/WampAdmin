@@ -24,15 +24,13 @@
  * THE SOFTWARE.
  */
 
-if ( is_project_page() ) {
-    /**
-     * 
-     */
-    do_action( 'project_wampadmin_menu' );
-} else {
-    /**
-     * 
-     */
-    do_action( 'wampadmin_menu' );
-}
+/* Load bootstrap */
+require_once ( dirname( __FILE__ ) . '/wa-admin.php' );
 
+require_once ( ABSPATH . '/wa-header.php' ); ?>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">File</h1>
+    </div>
+</div>
+<?php include ABSPATH . '/wa-footer.php';

@@ -24,15 +24,29 @@
  * THE SOFTWARE.
  */
 
-if ( is_project_page() ) {
-    /**
-     * 
-     */
-    do_action( 'project_wampadmin_menu' );
-} else {
-    /**
-     * 
-     */
-    do_action( 'wampadmin_menu' );
+/* Load bootstrap */
+require_once ( dirname( __FILE__ ) . '/wa-admin.php' );
+
+global $plugin_page;
+
+if ( $_GET['page'] ) {
+    $plugin_page = $_GET['page'];
+    $plugin_page = plugin_basename($plugin_page);
 }
 
+if ( isset($plugin_page) ) {
+    
+    if ( true ) {
+        
+        if ( ! ( file_exists( WA_PLUGIN_DIR . "/$plugin_page" ) && is_file( WA_PLUGIN_DIR . "/$plugin_page" ) ) ) {
+            exit;
+        }
+        
+        do_action( "load-{$plugin_page}" );
+        
+        include( WA_PLUGIN_DIR . "/$plugin_page");
+    }
+    
+    include ABSPATH . '/wa-footer.php';
+    exit(1);
+}

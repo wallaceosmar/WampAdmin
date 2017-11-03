@@ -24,15 +24,29 @@
  * THE SOFTWARE.
  */
 
-if ( is_project_page() ) {
-    /**
-     * 
-     */
-    do_action( 'project_wampadmin_menu' );
-} else {
-    /**
-     * 
-     */
-    do_action( 'wampadmin_menu' );
-}
+/**
+ * Constructs the menu.
+ *
+ * The elements in the array are :
+ *     0: Menu item name
+ *     1: The URL of the item's file
+ *     2: Page Title
+ *     3: Function
+ *     4: Icon for top level menu
+ *
+ * @global array $menu
+ */
 
+$menu[2] = array( 'Dashboard', 'project.html?' . http_build_query(array(
+    'action' => 'view',
+    'project' => get_project()
+)), '', '', 'fa-dashboard' );
+
+$menu[10] = array( 'Files', 'project-file.html?' . http_build_query(array(
+    'project' => get_project()
+)) , '', '', 'fa-folder' );
+
+$menu[70] = array( 'Projects', 'edit-project.html', '', '', 'fa-chevron-left' );
+
+
+require_once ABSPATH . WAINC . '/menu.php';

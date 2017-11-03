@@ -1,6 +1,3 @@
 {
-    "activated": [
-        "inverse-navbar.plugin.php",
-        "example.plugin.php"
-    ]
+    "activated": []
 }

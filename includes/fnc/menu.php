@@ -37,7 +37,7 @@
  * @param string $icon The class to the icon to be used for this menu. 
  * @param int $position The position in the menu order this one should appear.
  */
-function add_menu_page( $page_title, $menu_title, $menu_slug, $function = '', $icon = '', $position = null ) {
+function add_menu_page( $page_title, $menu_title, $menu_slug, $function = '', $icon = 'fa-circle-o', $position = null, $project_page = false ) {
     global $menu, $page_hook;
     
     $page_hook[ $menu_slug ] = $menu_title;
@@ -55,6 +55,34 @@ function add_menu_page( $page_title, $menu_title, $menu_slug, $function = '', $i
 }
 
 /**
+ * Add submenu page to the Plugins main menu.
+ * 
+ * @param string $page_title The text to be displayed in the title tags of the page when the 
+ * @param string $menu_title The text to be used for the menu.
+ * @param string $menu_slug The slug name to refer to this menu by (should be unique for this menu).
+ * @param callable $function The function to be called to output the content for this page.
+ * 
+ * @return bool
+ */
+function add_plugins_page( $page_title, $menu_title, $menu_slug, $function = '' ) {
+    return add_submenu_page( 'plugins.html', $page_title, $menu_title, $menu_slug, $function);
+}
+
+/**
+ * Add submenu page to the Project main menu.
+ * 
+ * @param string $page_title The text to be displayed in the title tags of the page when the 
+ * @param string $menu_title The text to be used for the menu.
+ * @param string $menu_slug The slug name to refer to this menu by (should be unique for this menu).
+ * @param callable $function The function to be called to output the content for this page.
+ * 
+ * @return bool
+ */
+function add_project_page( $page_title, $menu_title, $menu_slug, $function = '' ) {
+    return add_submenu_page( 'edit-project.html', $page_title, $menu_title, $menu_slug, $function);
+}
+
+/**
  * Add a submenu page.
  * 
  * @global array $submenu
@@ -63,7 +91,7 @@ function add_menu_page( $page_title, $menu_title, $menu_slug, $function = '', $i
  * @param string $parent_slug The slug name for the parent menu.
  * @param string $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string $menu_title The text to be used for the menu.
- * @param string $menu_slug The slug name to refer to this menu by (should be unique for 
+ * @param string $menu_slug The slug name to refer to this menu by (should be unique for this menu).
  * @param string|callback $function The function to be called to output the content for this page.
  */
 function add_submenu_page( $parent_slug, $page_title, $menu_title, $menu_slug, $function = '' ) {

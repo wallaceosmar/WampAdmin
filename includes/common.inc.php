@@ -46,6 +46,7 @@ require_once ( ABSPATH . WAINC . '/fnc/theme.php' );
 require_once ( ABSPATH . WAINC . '/fnc/misc.php' );
 require_once ( ABSPATH . WAINC . '/fnc/plugins.php' );
 require_once ( ABSPATH . WAINC . '/fnc/project.php' );
+require_once ( ABSPATH . WAINC . '/fnc/menu.php' );
 
 $submenu = $menu = array();
 
@@ -59,8 +60,12 @@ require_once ( ABSPATH . WAINC . '/vars.php' );
 // Load active plugins.
 $_plugins->load_plugins();
 
-// Menu
-require_once ( ABSPATH . 'menu.php' );
+// Menus
+if ( is_project_page() ) {
+    include ( ABSPATH . WAINC . '/project-menu.php' );
+} else {
+    include ( ABSPATH . 'menu.php' );
+}
 
 /**
  * Fires once activated plugins have loaded.

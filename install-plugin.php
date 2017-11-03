@@ -31,3 +31,12 @@ $title = 'Plugins';
 $parent_file = 'plugins.php';
 $submenu_file = 'plugins.php';
 
+wa_reset_vars(array( 'action' ));
+
+switch ( $action ) {
+default:
+    /**
+     * 
+     */
+    header_redirect( base_url( $parent_file) );
+}

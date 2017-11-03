@@ -33,6 +33,9 @@ namespace WA\Project;
  * 
  * @property string $title Description
  * @property string $folder_name Description
+ * @property array $library Description
+ * @property array $virtualhost Description
+ * @property array $database Description
  */
 class Project {
     
@@ -53,8 +56,8 @@ class Project {
      */
     public function __construct( $project_path, $project_folder ) {
         $this->filename = $project_path . $project_folder;
-        if ( file_exists( $this->filename . '/wampadmin.json' ) ) {
-            $this->project = json_decode( file_get_contents( $this->filename . '/wampadmin.json' ) );
+        if ( file_exists( $this->filename . '/wampadmin.dat' ) ) {
+            $this->project = unserialize( file_get_contents( $this->filename . '/wampadmin.dat' ) );
             if ( empty( $this->project ) ) {
                 $this->project = new \stdClass();
             }
@@ -84,10 +87,9 @@ class Project {
         mkdir( $this->filename . '/logs', '0755' );
         mkdir( $this->filename . '/cgi-bin', '0755' );
         
-        file_put_contents( $this->filename . '/wampadmin.json', json_encode(array(
-            'title' => basename($this->filename),
-            'library' => array(),
-        )));
+        file_put_contents( $this->filename . '/wampadmin.dat', serialize( (object) self::factory(array(
+            'title' => basename($this->filename)
+        ))));
         
         return true;
         
@@ -100,6 +102,18 @@ class Project {
      */
     public function __get($name) {
         return isset( $this->project->$name ) ? $this->project->$name : null;
+    }
+    
+    /**
+     * 
+     * @param array $args
+     * @return array
+     */
+    public static function factory( $args = array() ) {
+        return parse_args($args, array(
+            'title' => null, 'library' => array(),
+            'virtualhost' => array(), 'database' => array()
+        ));
     }
     
 }

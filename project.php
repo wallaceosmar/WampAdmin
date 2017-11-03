@@ -28,7 +28,7 @@
 require_once ( dirname( __FILE__ ) . '/wa-admin.php' );
 
 // 
-wa_reset_vars( array( 'action' ) );
+wa_reset_vars( array( 'action', 'project' ) );
 
 if ( !$action ) {
     header( 'Location:' . base_url( 'edit-project.html' ) , true, 302);
@@ -70,7 +70,20 @@ case 'new':
     
     header( 'Location:' . base_url( 'edit-project.html' ) , true, 302);
     exit;
-default :
+case 'view':
+    if ( empty( $project ) ) {
+        header_redirect( 'project.php' );
+    }
     
-    header( 'Location:' . base_url( 'edit-project.html' ) , true, 302);
+    $title = 'Project';
+    
+    $parent_file = 'project.php';
+    $submenu_file = 'project.php';
+    
+    include ABSPATH . '/wa-header.php';
+    
+    include ABSPATH . '/wa-footer.php';
+    exit(1);
+default :
+    header_redirect( base_url( 'edit-project.html' ) );
 }

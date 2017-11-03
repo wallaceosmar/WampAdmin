@@ -101,6 +101,12 @@ function do_action($tag, $arg = '') {
     } while( next( $filter_table[ $tag ] ) !== false );
 }
 
+/**
+ * 
+ * @global type $filter_table
+ * @param type $name
+ * @return type
+ */
 function has_action( $name ) {
     global $filter_table;
     

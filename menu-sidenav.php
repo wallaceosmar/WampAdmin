@@ -42,17 +42,12 @@ $self = preg_replace('|^.*/plugins/|i', '', $self);
  */
 global $menu, $submenu, $parent_file, $submenu_file;
 
-function _wa_menu_output( $menu, $submenu, $submenu_as_parent = true ) {
+function _wa_menu_output( $menu, $submenu ) {
     global $self, $parent_file, $submenu_file, $plugin_page;
     
     foreach ( $menu as $key => $item ) {
         $class = $submenu_class = array();
         $arrow = '';
-        
-        $href = $item[1];
-        if ( false === strpos( '://', $href) ) {
-            $href = base_url($href);
-        }
         
         // Submenu
         $submenu_items = array();
@@ -69,7 +64,18 @@ function _wa_menu_output( $menu, $submenu, $submenu_as_parent = true ) {
         $class = $class ? ' class="' . join( ' ', $class ) . '"' : '';
         echo '<li>' . PHP_EOL;
         
-        echo "\t<a{$class} href='{$href}'><i class='fa {$item[4]} fa-fw'></i> {$item[0]}{$arrow}</a>";
+        if ( !empty( $item[1] ) ) {
+            $menu_file = $item[1];
+            if (false !== ( $pos = strpos($menu_file, '?') ) ) {
+                $menu_file = substr($menu_file, 0, $pos);
+            }
+            
+            if ( ( 'index.php' != $item[1] ) && file_exists( WA_PLUGIN_DIR . "/$menu_file" ) && ! file_exists( ABSPATH . "/$menu_file" ) ) {
+                echo "\n\t<a{$class} href='page.html?page=" . str_replace( '?', '&', $item[1]) . "'><i class='fa {$item[4]} fa-fw'></i> {$item[0]}{$arrow}</a>";
+            } else {
+                echo "\n\t<a{$class} href='{$item[1]}'><i class='fa {$item[4]} fa-fw'></i> {$item[0]}{$arrow}</a>";
+            }
+        }
         
         if ( ! empty( $submenu_items ) ) {
             echo "<ul class='nav nav-second-level'>";

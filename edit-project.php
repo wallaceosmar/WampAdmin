@@ -99,7 +99,9 @@ require_once ( ABSPATH . '/wa-header.php' ); ?>
                     <?php foreach( get_list_projects() as $project ): ?>
                         <tr>
                             <td><input name="project-folder[]" value="<?php echo $project->folder_name;?>" type="checkbox"></td>
-                            <td><?php echo $project->title;?></td>
+                            <td><a href="<?php echo base_url('project.html', array(
+                                'action' => 'view', 'project' => $project->folder_name
+                            ));?>"><?php echo $project->title;?></a></td>
                             <td><?php echo $project->folder_name;?></td>
                             <td></td>
                         </tr>

@@ -7,7 +7,7 @@
 
 Admin control Panel to WampServer
 
-# Instalation
+# installation
 
 Donwload the project and install in the folder <code>apps</code>.
 
@@ -15,6 +15,8 @@ Create a alias with the name <code>wampadmin</code>.
 
 # Future features
 
+* Projet Pages
 * Plugin pages
-* Alias Suport
-* VirtualHost Suport
+* Alias Support
+* VirtualHost Support
+* Composer Support

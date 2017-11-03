@@ -24,15 +24,11 @@
  * THE SOFTWARE.
  */
 
-if ( is_project_page() ) {
-    /**
-     * 
-     */
-    do_action( 'project_wampadmin_menu' );
-} else {
-    /**
-     * 
-     */
-    do_action( 'wampadmin_menu' );
-}
+$title = 'Teste';
 
+require_once ( ABSPATH . '/wa-header.php' ); ?>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Example Page</h1>
+    </div>
+</div>

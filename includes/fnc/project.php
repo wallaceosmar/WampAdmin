@@ -25,6 +25,22 @@
  */
 
 /**
+ * Deletes the selected project
+ * 
+ * @global WA\Project\Projects $_projects
+ * 
+ * @param string $project_path Project path
+ * 
+ * @return bool
+ */
+function delete_project( $project_path ) {
+    global $_projects;
+    
+    return $_projects->delete_project($project_path);
+}
+
+/**
+ * Returns a list of all projects
  * 
  * @global WA\Project\Projects $_projects
  * 
@@ -36,10 +52,35 @@ function get_list_projects() {
     return $_projects->get_projects_info();
 }
 
+function get_project() {
+    global $project;
+    
+    if ( isset( $_GET['project'] ) ) {
+        $project = filter_input( INPUT_GET, 'project' );
+    } elseif ( isset( $_POST['project'] ) ) {
+        $project = filter_input( INPUT_POST, 'project' );
+    } else {
+        $project = null;
+    }
+    
+    return $project;
+}
+
+/**
+ * Returns true if you are on a project page
+ * 
+ * @return bool
+ */
+function is_project_page() {
+    return ( isset( $_GET['project'] ) && !empty( $_GET['project'] ) );
+}
+
 /**
  * Create a new project
  * 
  * @global WA\Project\Projects $_projects
+ * 
+ * @param string $project_name Project name.
  * 
  * @return bool
  */
@@ -55,18 +96,4 @@ function new_project( $project_name ) {
     }
     
     return $return;
-}
-
-/**
- * 
- * @global WA\Project\Projects $_projects
- * 
- * @param string $project_path
- * 
- * @return bool
- */
-function delete_project( $project_path ) {
-    global $_projects;
-    
-    return $_projects->delete_project($project_path);
 }
