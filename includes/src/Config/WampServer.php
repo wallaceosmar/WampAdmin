@@ -92,19 +92,34 @@ namespace WA\Config;
  */
 class WampServer {
     
+    /**
+     *
+     * @var array 
+     */
     private $configdata = array();
+    
+    /**
+     *
+     * @var string 
+     */
+    private $filepath;
+    
+    /**
+     *
+     * @var string 
+     */
+    private $filename = 'wampmanager.conf';
     
     /**
      * 
      */
     public function __construct() {
-        $dirpath = dirname( dirname( ABSPATH ) );
-        if ( file_exists( $filename =  ( $dirpath . '/wampmanager.conf' ) ) ) {
+        $this->filepath = ABSPATH;
+        //$this->filepath = dirname( dirname( ABSPATH ) );
+        if ( file_exists( $filename =  ( $this->filepath . '/' . $this->filename ) ) ) {
             $this->configdata = parse_ini_file( $filename );
         }
         
-        //var_dump( $this->configdata );
-        //exit;
     }
     
     /**
@@ -125,6 +140,31 @@ class WampServer {
      */
     public function __isset($name) {
         return isset( $this->configdata[ $name ] );
+    }
+    
+    /**
+     * Set a value to a defined value
+     * 
+     * @param string $name
+     * @param string $value
+     * 
+     * @return $this
+     */
+    public function set ( $name, $value ) {
+        if ( $this->__isset( $name ) ) {
+            $filename =  ( $this->filepath . '/' . $this->filename );
+            
+            // Change the value in the option
+            $this->configdata[ $name ] = $value;
+            
+            // Saving the value
+            file_put_contents($filename, preg_replace( 
+                    '/^' . $name . '([\s=]+)"([^"]*)"$/m', // Regex
+                    "{$name} = \"{$value}\"", // Change the value
+                    file_get_contents( $filename ) // Get the content
+            ));
+        }
+        return $this;
     }
     
 }

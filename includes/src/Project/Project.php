@@ -41,13 +41,13 @@ class Project {
     
     /**
      *
-     * @var array
+     * @var \stdClass
      */
-    private $project = array();
+    private $project = null;
     
     /**
      *
-     * @var type 
+     * @var string 
      */
     private $filename;
     
@@ -70,7 +70,7 @@ class Project {
      * @return type
      */
     function exists() {
-        return ( !empty( $this->project ) );
+        return ( !empty( $this->project ) && is_object( $this->project ) );
     }
     
     /**
@@ -98,10 +98,28 @@ class Project {
     /**
      * 
      * @param type $name
+     * @param type $value
+     */
+    public function __set($name, $value) {
+        $this->project->$name = $value;
+    }
+    
+    /**
+     * 
+     * @param type $name
+     * @return type
+     */
+    public function __isset($name) {
+        return isset ( $this->project->$name );
+    }
+    
+    /**
+     * 
+     * @param type $name
      * @return type
      */
     public function __get($name) {
-        return isset( $this->project->$name ) ? $this->project->$name : null;
+        return $this->__isset( $name ) ? $this->project->$name : null;
     }
     
     /**

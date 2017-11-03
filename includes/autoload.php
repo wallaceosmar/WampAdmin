@@ -44,5 +44,6 @@ $autoloader->register();
 
 $autoloader->addNamespaces(array(
     array( '\\WA', ABSPATH . WAINC . '/src/' ), // WampAdmin Namespace
-    array( '\\Plugins', ABSPATH . '/plugins/' ) // Plugins Namespace
+    array( '\\Plugins', ABSPATH . '/plugins/' ), // Plugins Namespace
+    array( '\\AngularFilemanager', ABSPATH . 'api/FileManager/' ) // FileMangager Local Bridge
 ));

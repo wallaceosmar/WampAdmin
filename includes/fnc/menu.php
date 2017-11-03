@@ -25,6 +25,11 @@
  */
 
 /**
+ * @package WampAdmin
+ * @subpackage Menu
+ */
+
+/**
  * Add a top-level menu page.
  * 
  * @global array $menu

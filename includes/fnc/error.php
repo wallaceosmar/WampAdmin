@@ -56,7 +56,8 @@ function _mount_alert_() {
 
 /**
  * 
- * @global type $_error_alert
+ * @global array() $_error_alert
+ * 
  * @param type $type
  * @param type $message
  * @param type $title

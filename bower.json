@@ -1,0 +1,6 @@
+{
+  "name": "WampAdmin",
+  "dependencies": {
+    "angular-filemanager": "1.5.1"
+  }
+}

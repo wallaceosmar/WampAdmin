@@ -47,6 +47,7 @@ require_once ( ABSPATH . WAINC . '/fnc/misc.php' );
 require_once ( ABSPATH . WAINC . '/fnc/plugins.php' );
 require_once ( ABSPATH . WAINC . '/fnc/project.php' );
 require_once ( ABSPATH . WAINC . '/fnc/menu.php' );
+require_once ( ABSPATH . WAINC . '/fnc/config-server.php' );
 
 $submenu = $menu = array();
 

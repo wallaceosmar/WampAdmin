@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-require_once './includes/common.inc.php';
+require_once dirname( __FILE__ ) . '/includes/common.inc.php';
 
 if ( ! empty( $_REQUEST['action'] ) ) {
     
