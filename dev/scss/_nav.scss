@@ -1,0 +1,71 @@
+.nav {
+    
+}
+
+$knowledge_margin_top: .5rem;
+$knowledge_margin_right: 1rem;
+$knowledge_margin_bootom: .5rem;
+$knowledge_margin_left: 1rem;
+
+.knowledgebase {
+    div[class^="col-"] {
+        &:last-child {
+            padding-left: 0px;
+        }
+    }
+    .nav-inline {
+        margin: 0;
+        list-style: none;
+        .nav-item {
+            display: list-item;
+            position: relative;
+            margin-bottom: 1px;
+            &:last-child {
+                margin-bottom: 0px !important;
+            }
+            .nav-link {
+                font-size: 13px;
+                color: $nav-inline-link-font-color !important;
+                display: block;
+                background: #f0f6fa !important;
+                border-left: solid 2px #c4d5df;
+                &.active {
+                    color: $white !important;
+                    background: rgba(22, 158, 244, 1) !important;
+                    text-decoration: none;
+                    border-left: solid 1px #0c91e5;
+                    i {
+                        background: #0c91e5!important;
+                    }
+                }
+                i {
+                    color: #b9cbd5;
+                    font-size: 15px;
+                    padding: 11px 9px;
+                    margin: (-$knowledge_margin_top) ($knowledge_margin_top) (-$knowledge_margin_bootom) (-$knowledge_margin_left);
+                    background: #e0eaf0!important;
+                }
+            }
+        }
+    }
+}
+
+.nav-tabs .nav-link {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid transparent;
+}
+
+@include media( 768px ) {
+    .nav-inline .nav-item .nav-link.active:after {
+        content: '';
+        display: inline-block;
+        border-bottom: $nav-inline-link-active-after-border-size solid transparent;
+        border-top: $nav-inline-link-active-after-border-size solid transparent;
+        border-left: $nav-inline-link-active-after-border-size solid rgb(22, 158, 244);
+        position: absolute;
+        top: 12px;
+        right: -5px;
+    }
+}

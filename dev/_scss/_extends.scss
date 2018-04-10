@@ -1,0 +1,35 @@
+//@extend-elements
+
+//@extend-elements
+//original selectors
+//.portlet >.portlet-title:after, .portlet >.portlet-title:before
+%extend_1 {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+//original selectors
+//.navbar .nav-item .dropdown-menu .dropdown-item.active, .navbar .nav-item .dropdown-menu .dropdown-item:hover
+%extend_2 {
+    color: $white;
+    filter: none !important;
+    background: $color_alizarin_crimson_approx !important;
+}
+
+//original selectors
+//.dashboard-stat:after, .dashboard-stat:before
+%extend_3 {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+//original selectors
+//.page-content .breadcrumb a, .page-content .breadcrumb i, .page-content .breadcrumb span
+%extend_4 {
+    color: $color_mine_shaft_approx;
+    font-size: 14px;
+    //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    text-shadow: none;
+}

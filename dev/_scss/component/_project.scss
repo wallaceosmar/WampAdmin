@@ -1,0 +1,45 @@
+.project-dashboard {
+    
+    [class^=icon-],
+    [class*=" icon-"] {
+        vertical-align: middle!important;
+    }
+    
+    .icon-btn-project {
+        height: 95px!important;
+        width: 128px!important;
+        margin: 5px 5px 0 0!important;
+        border: 1px solid #ddd!important;
+        padding: 25px 0 0!important;
+        background-color: #fafafa!important;
+        background-image: none!important;
+        filter: none!important;
+        -webkit-box-shadow: none!important;
+        -moz-box-shadow: none!important;
+        box-shadow: none!important;
+        display: inline-block;
+        color: #646464!important;
+        text-shadow: none!important;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        -webkit-transition: all .3s ease!important;
+        -moz-transition: all .3s ease!important;
+        -ms-transition: all .3s ease!important;
+        -o-transition: all .3s ease!important;
+        transition: all .3s ease!important;
+        text-decoration: none;
+        div {
+            font-family: 'Open Sans', sans-serif;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            color: #646464;
+            font-size: 12px;
+            font-weight: 400;
+            word-wrap: normal;
+            position: relative;
+            height: 2.8em;
+            overflow: hidden;
+        }
+    }
+}

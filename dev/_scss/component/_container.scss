@@ -1,0 +1,115 @@
+body {
+    background-color: $alabaster !important;
+    color: $black;
+    font-family: $font_0, $font_1;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.clearfix {
+    &:after, &:before {
+        display: table;
+        line-height: 0;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+   &.unstyled {
+        margin-left: 0;
+        list-style: none;
+        padding: 0rem; 
+    } 
+}
+
+.page-content {
+    border-left: 1px solid $color_bon_jour_approx !important;
+    border-bottom: 1px solid $color_bon_jour_approx !important;
+    background-color: $white;
+    .breadcrumb {
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 0;
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: none;
+        padding-right: 0;
+        padding-left: 8px;
+        margin-bottom: 25px;
+        border: 0 !important;
+        background-color: $color_gallery_approx;
+        a {
+            @extend %extend_4;
+        }
+        i {
+            @extend %extend_4;
+        }
+        span {
+            @extend %extend_4;
+        }
+    }
+    .page-title {
+        padding: 0;
+        font-size: 30px;
+        letter-spacing: -1px;
+        display: block;
+        color: $color_storm_dust_approx;
+        margin: 20px 0 15px;
+        font-weight: 300;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 40px;
+        small {
+            font-size: 14px;
+            letter-spacing: 0;
+            font-weight: 300;
+            color: #888;
+            line-height: 1;
+        }
+    }
+}
+
+.page-sidebar {
+    padding: 0px;
+}
+
+.footer {
+    padding: 8px 20px 5px;
+    font-size: 12px;
+    .footer-inner {
+        color: $color_mine_shaft_approx;
+        float: left;
+        display: inline-block;
+    }
+    &:after, &:before {
+        @extend %extend_1;
+    }
+    .footer-tools {
+        float: right;
+        display: inline-block;
+        .go-top {
+            background-color: #666;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: -2px;
+            margin-right: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            padding: 0 6px;
+            i {
+                color: #999;
+                font-size: 22px;
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+.page-navbar-fixed {
+    .page-container {
+        margin-top: $navbar_height;
+    }
+}

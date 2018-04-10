@@ -1,0 +1,26 @@
+.page-sidebar {
+    background-color: $alabaster;
+}
+
+.bg-host {
+    background-color: $color_cape_cod_approx !important;
+}
+
+.page-content {
+    background-color: $white !important;
+}
+
+.page-content {
+    border-left: 1px solid #e2e2e2!important;
+    border-bottom: 1px solid #e2e2e2!important;
+}
+
+@media(min-width: 980px) {
+    .page-boxed {
+        background-color: $color_gray_nurse_approx !important;
+        .page-content {
+            border-left: 1px solid $color_bon_jour_approx;
+            border-bottom: 1px solid $color_bon_jour_approx;
+        }
+    }
+}

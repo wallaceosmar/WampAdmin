@@ -1,0 +1,45 @@
+table {
+    &.dataTable {
+        border-spacing: 0px;
+        thead {
+            border: 1px solid #dddddd;
+            th {
+                border-left: 1px solid #dddddd !important;
+                &:first-child {
+                    border-left: none !important;
+                }
+                border-bottom: none;
+            }
+        }
+        tbody {
+            tr {
+                cursor: pointer;
+                td {
+                    border-top: 1px solid #dddddd;
+                }
+            }
+        }
+    }
+    &.table-advance thead tr th {
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
+    }
+    &.table-striped {
+        tbody {
+            tr {
+                &:nth-of-type(odd) {
+                    background-color: rgba(0,0,0, .03);
+                }
+            }
+        }
+    }
+}
+
+.table td,
+.table th {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    border: none;
+}

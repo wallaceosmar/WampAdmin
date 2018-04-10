@@ -1,0 +1,11 @@
+@mixin portlet-box-color( $background-color, $font-color ) {
+    border: 1px solid $background-color;
+    .portlet-title {
+        color: $font-color;
+        border-bottom: 1px solid $background-color;
+        background-color: $background-color;
+        i {
+            color: $font-color !important;
+        }
+    }
+}

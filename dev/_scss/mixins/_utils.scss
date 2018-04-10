@@ -1,0 +1,9 @@
+@mixin padding ( $top, $right, $bottom, $left ) {
+    @if ( $top != $bottom && $left != $right ) {
+        padding: $top $right $bottom $left;
+    } @else if ( $top == $bottom && $left == $right ) {
+        padding: $top $right;
+    } @else if ( $top == $right && $top == $bottom && $top == $left ) {
+        padding: $top;
+    }
+}

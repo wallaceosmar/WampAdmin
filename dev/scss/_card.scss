@@ -1,0 +1,31 @@
+.card-accordion {
+    .card {
+        margin-bottom: $card-accordion-margin;
+        border: 1px solid #e5e5e5;
+        @include border-radius( $card-accordion-radius );
+        .card-header {
+            background: $card-accordion-header-color;
+            padding: $card-accordion-header-padding;
+            &:first-child {
+                @include border-radius( $card-accordion-radius );
+            }
+            button {
+                width: 100%;
+            }
+            button.btn {
+                font-size: $card-accordion-header-font-size;
+                text-align: left;
+                color: $card-accordion-header-font-color;
+                padding: 8px 15px;
+                &,
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+        .card-body {
+            padding: $card-accordion-body-padding;
+            border-top: 1px solid #e5e5e5;
+        }
+    }
+}

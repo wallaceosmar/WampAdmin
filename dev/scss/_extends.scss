@@ -1,0 +1,118 @@
+//@extend-elements
+//original selectors
+//.footer:after, .footer:before
+%extend_1 {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+//original selectors
+//.navbar .nav-item .dropdown-menu .dropdown-item.active, .navbar .nav-item .dropdown-menu .dropdown-item:hover
+%extend_2 {
+    color: $white;
+    filter: none !important;
+    background: $color_alizarin_crimson_approx !important;
+}
+
+//original selectors
+//.dashboard-stat:after, .dashboard-stat:before
+%extend_3 {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+//original selectors
+//.page-content .breadcrumb a, .page-content .breadcrumb i, .page-content .breadcrumb span
+%extend_4 {
+    color: $color_mine_shaft_approx;
+    font-size: 14px;
+    //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    text-shadow: none;
+}
+
+//original selectors
+//input[type=text].m-wrap, input[type=password].m-wrap, input[type=datetime].m-wrap, input[type=datetime-local].m-wrap, input[type=date].m-wrap, input[type=month].m-wrap, input[type=time].m-wrap, input[type=week].m-wrap, input[type=number].m-wrap, input[type=email].m-wrap, input[type=url].m-wrap, input[type=tel].m-wrap, input[type=color].m-wrap, input[type=search].m-wrap, textarea.m-wrap
+%extend_5 {
+    color: $color_mine_shaft_approx;
+    outline: 0;
+    padding: 6px !important;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    vertical-align: top;
+    background-image: none !important;
+    filter: none !important;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none !important;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0;
+    background: 0 0;
+}
+
+//original selectors
+//.form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal input[type=datetime], .form-horizontal input[type=datetime-local], .form-horizontal input[type=date], .form-horizontal input[type=month], .form-horizontal input[type=time], .form-horizontal input[type=week], .form-horizontal input[type=number], .form-horizontal input[type=email], .form-horizontal input[type=url], .form-horizontal input[type=tel], .form-horizontal input[type=color], .form-horizontal input[type=search], .form-horizontal textarea
+%extend_6 {
+    border: 1px solid $color_celeste_approx;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0 !important;
+}
+
+//original selectors
+//.form-horizontal input[type=text]:focus, .form-horizontal input[type=password]:focus, .form-horizontal input[type=datetime]:focus, .form-horizontal input[type=datetime-local]:focus, .form-horizontal input[type=date]:focus, .form-horizontal input[type=month]:focus, .form-horizontal input[type=time]:focus, .form-horizontal input[type=week]:focus, .form-horizontal input[type=number]:focus, .form-horizontal input[type=email]:focus, .form-horizontal input[type=url]:focus, .form-horizontal input[type=tel]:focus, .form-horizontal input[type=color]:focus, .form-horizontal input[type=search]:focus, .form-horizontal textarea:focus
+%extend_7 {
+    border-color: $color_picton_blue_80_approx;
+    outline: dotted thin\9;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: inset 0 1px 1px $black_7_5, 0 0 8px $color_picton_blue_60_approx;
+}
+
+//original selectors
+//.table td, .table th
+%extend_8 {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    border: none;
+}
+
+//original selectors
+//.clearfix:after, .clearfix:before
+%extend_9 {
+    display: table;
+    line-height: 0;
+}
+
+//original selectors
+//.note.note-danger, .note.note-error
+%extend_10 {
+    background-color: $color_linen_approx;
+    border-color: $color_flamingo_approx;
+}
+
+//original selectors
+//.portlet .portlet-title:after, .portlet .portlet-title:before
+%extend_11 {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+//original selectors
+//.project-dashboard-information li .project-info, .project-dashboard-information li .hosting-info
+%extend_12 {
+    float: left;
+    color: $color_storm_dust_approx;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+//original selectors
+//.project-dashboard-information li .project-num, .project-dashboard-information li .hosting-num
+%extend_13 {
+    float: right;
+    color: $color_dodger_blue_approx;
+    font-size: 12px;
+    font-weight: 300;
+}

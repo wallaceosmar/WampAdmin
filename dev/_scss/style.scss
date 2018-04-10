@@ -1,0 +1,22 @@
+/**
+ * WampAdmin Style
+ */
+@import "variables";
+@import "mixins/mixins";
+@import "extends";
+
+// Components
+@import "component/badge";
+@import "component/forms";
+@import "component/project";
+@import "component/table";
+@import "component/container";
+@import "component/fontawesome";
+@import "component/buttons";
+@import "component/note";
+@import "component/dataTable";
+@import "component/portlet";
+@import "component/navbar";
+@import "component/dashboard";
+@import "component/breadcrumb";
+@import "component/colors";

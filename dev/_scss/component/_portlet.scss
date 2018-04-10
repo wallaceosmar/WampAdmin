@@ -1,0 +1,89 @@
+.portlet {
+    clear: both;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    &.portlet-box {
+        padding: 0!important;
+        .portlet-title {
+            padding: 8px 10px 2px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 0;
+        }
+        .portlet-body {
+            @include padding( $portlet_top_padding, $portlet_right_padding, $portlet_bootom_padding, $portlet_bootom_padding );
+        }
+    }
+    &.bg-pink {
+        @include portlet-box-color( $portlet_box_pink, $white );
+    }
+    &.bg-blue {
+        @include portlet-box-color( $portlet_box_blue, $white );
+    }
+    &.bg-yellow {
+        @include portlet-box-color( $portlet_box_yellow, $white);
+    }
+    &.project-dashboard-information ul {
+        li {
+            padding: 0.5rem;
+        }
+    }
+    .portlet-title {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        &:after,
+        &:before {
+            content: "";
+            display: table;
+            line-height: 0;
+        }
+        .caption {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 400;
+            margin: 0 0 7px;
+            padding: 0;
+            i {
+                margin-top: 5px;
+                display: inline-block!important;
+                font-size: 13px;
+                margin-right: 5px;
+                color: #666;
+            }
+        }
+    }
+    .portlet-body {
+        clear: both;
+        padding: 0;
+    }
+}
+
+.project-dashboard-information {
+    margin-top: 3rem;
+    li {
+        overflow: hidden;
+        border-top: solid 1px #eee;
+        padding: 10px;
+        &:first-child {
+            border-top: none;
+        }
+        .project-info,
+        .hosting-info {
+            float: left;
+            color: #646464;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .project-num,
+        .hosting-num {
+            float: right;
+            color: #169ef4;
+            font-size: 12px;
+            font-weight: 300;
+        }
+    }
+    .progress {
+        margin-bottom: 0;
+        border-radius: 0px;
+    }
+}

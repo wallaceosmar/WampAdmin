@@ -1,0 +1,8 @@
+{
+    "name": "wallaceosmar/wampadmin",
+    "description": "",
+    "version": "0.0.1-alpha2",
+    "type": "project",
+    "keywords": [ "wampserver", "php", "admin" ],
+    "homepage": ""
+}

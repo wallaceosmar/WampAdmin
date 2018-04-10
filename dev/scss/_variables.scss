@@ -1,0 +1,24 @@
+// Import colors
+@import "colors";
+
+// Default vars
+$border-radius: 4px;
+
+// Nav Tabs
+$nav-inline-link-font-color: rgb(85, 115, 134);
+
+//
+$nav-inline-link-active-after-border-size: 6px;
+
+// Cards
+$card-accordion-margin: 2px !default;
+$card-accordion-radius: 0px;
+
+// Card Accordion Header
+$card-accordion-header-padding: 0px;
+$card-accordion-header-color: rgba(229, 229, 229, 1) !default;
+$card-accordion-header-font-size: 13px;
+$card-accordion-header-font-color: rgb(13, 99, 143); //rgba(0, 0, 0, 1) !default;
+
+// Card Accordion Body
+$card-accordion-body-padding: 9px 15px;

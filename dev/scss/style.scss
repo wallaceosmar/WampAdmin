@@ -1,0 +1,687 @@
+/*!
+ * WampAdmin v0.0.0 (https://github.com/wallaceosmar/WampAdmin)
+ * Copyright 2017-2018 wallaceosmar
+ * Licensed under MIT (https://github.com/wallaceosmar/WampAdmin/blob/master/LICENSE)
+ */
+
+@import "functions";
+@import "variables";
+@import "mixins";
+@import "root";
+@import "extends";
+
+//fonts
+$font_0: Open Sans;
+$font_1: sans-serif;
+
+//data-uris
+$data_uri_0: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAABWCAYAAADVJVbkAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAM1JREFUeNrsmFsKxCAMRRtxSe5/Be4pnYF+lMEppiZUZ44fBQvmaF5eFFXdIkd+f0opZkqtVboBlgXWDaUteCSvnc55ArcsunLLeW5JhK+As5HDuBz/F3FR40RxQb7j8+dc5FFUrSHR3XT9SgYAYJULB9kCIFa2jF6hucfICzqvbEmdRUUWIVsAAADwH83uTkOyCa/eBdYNPR4D3ouajyF6MRcPgHwYF1rFcLVOk0UaCZCfDTIAAMgWZAsAL9kydIVmDyMEGdkSK1t2AQYAa5tGM0Yy5xYAAAAASUVORK5CYII=";
+
+// Components
+@import "nav";
+@import "navbar";
+@import "card";
+@import "dashboard";
+@import "footer";
+
+.page-content {
+    background-color: $white !important;
+    border-left: 1px solid $color_bon_jour_approx !important;
+    border-bottom: 1px solid $color_bon_jour_approx !important;
+    &:after {
+        content: "";
+        padding: 1rem;
+    }
+    & div.container-fluid {
+        padding: 0px;
+        margin: 0px;
+    }
+    .breadcrumb {
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 0;
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: none;
+        padding-right: 0;
+        padding-left: 8px;
+        margin-bottom: 25px;
+        border: 0 !important;
+        background-color: $color_gallery_approx;
+        a {
+            @extend %extend_4;
+        }
+        i {
+            @extend %extend_4;
+        }
+        span {
+            @extend %extend_4;
+        }
+    }
+    .page-title {
+        padding: 0;
+        font-size: 30px;
+        letter-spacing: -1px;
+        display: block;
+        color: $color_storm_dust_approx;
+        margin: 20px 0 15px;
+        font-weight: 300;
+        font-family: $font_0, $font_1;
+        line-height: 40px;
+        small {
+            font-size: 14px;
+            letter-spacing: 0;
+            font-weight: 300;
+            color: $color_suva_gray_approx;
+            line-height: 1;
+        }
+    }
+}
+.portlet {
+    clear: both;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    .portled-badge {
+        min-height: 14px;
+        max-height: 39px;
+        padding: .65em .7em;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 0;
+    }
+    &.portlet-box {
+        padding: 0 !important;
+        .portlet-title {
+            padding: 8px 10px 2px;
+            border-bottom: 1px solid $color_gallery_approx;
+            margin-bottom: 0;
+        }
+        .portlet-body {
+            padding: 1rem;
+        }
+    }
+    &.bg-pink {
+        border: 1px solid $color_crimson_approx;
+        .portlet-title {
+            color: $white;
+            border-bottom: 1px solid $color_crimson_approx;
+            background-color: $color_crimson_approx;
+            i {
+                color: $white !important;
+            }
+        }
+    }
+    &.bg-blue {
+        border: 1px solid $color_cornflower_blue_approx;
+        .portlet-title {
+            color: $white;
+            border-bottom: 1px solid $color_cornflower_blue_approx;
+            background-color: $color_cornflower_blue_approx;
+            i {
+                color: $white !important;
+            }
+        }
+    }
+    &.bg-yellow {
+        border: 1px solid $color_yellow_orange_approx;
+        .portlet-title {
+            color: $white;
+            border-bottom: 1px solid $color_yellow_orange_approx;
+            background-color: $color_yellow_orange_approx;
+            i {
+                color: $white !important;
+            }
+        }
+    }
+    .portlet-title {
+        margin-bottom: 15px;
+        border-bottom: 1px solid $color_gallery_approx;
+        &:after {
+            @extend %extend_11;
+        }
+        &:before {
+            @extend %extend_11;
+        }
+        .caption {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 400;
+            margin: 0 0 7px;
+            padding: 0;
+            i {
+                margin-top: 5px;
+                display: inline-block !important;
+                font-size: 13px;
+                margin-right: 5px;
+                color: $color_storm_dust_approx;
+            }
+        }
+    }
+    .portlet-body {
+        clear: both;
+        padding: 0;
+    }
+    &.project-dashboard-information ul li {
+        padding: 0.5rem;
+    }
+}
+.search-forms {
+    margin-bottom: 25px;
+    background: $color_catskill_white_approx;
+}
+.search-default {
+    form {
+        margin-bottom: 0;
+        padding: 12px 14px;
+    }
+    .chat-form {
+        margin: 0;
+        padding: 0;
+        background: 0 0;
+        overflow: hidden;
+        position: relative;
+        .input-cont {
+            margin-right: 108px;
+            input:focus {
+                border: 1px solid $color_chateau_green_approx !important;
+            }
+        }
+    }
+}
+.chat-form {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: $color_athens_gray_approx;
+    overflow: hidden;
+    clear: both;
+    .input-cont {
+        margin-right: 55px;
+        .m-wrap {
+            margin-bottom: 0;
+        }
+        input {
+            border: 1px solid $color_alto_approx;
+            width: 100%;
+            margin-top: 0;
+            background-color: $white !important;
+            &:focus {
+                border: 1px solid $color_cornflower_blue_approx !important;
+            }
+        }
+    }
+}
+.form-horizontal {
+    .form-group {
+        border-bottom: 1px solid $color_gallery_approx;
+        margin-bottom: 0 !important;
+        &:first-child {
+            margin-top: -1rem;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+        .control-label {
+            padding-top: 1.1rem;
+            text-align: right;
+        }
+        .controls {
+            padding: 1rem;
+            border-left: 1px solid $color_gallery_approx;
+        }
+    }
+    .form-actions {
+        padding-left: 190px;
+        margin-top: 0 !important;
+        margin-bottom: -1rem;
+    }
+    input[type=text] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=password] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=datetime] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=datetime-local] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=date] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=month] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=time] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=week] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=number] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=email] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=url] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=tel] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=color] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    input[type=search] {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    textarea {
+        @extend %extend_6;
+        &:focus {
+            @extend %extend_7;
+        }
+    }
+    .help-block {
+        color: $color_chicago_approx !important;
+    }
+    .help-inline {
+        color: $color_chicago_approx !important;
+        margin-top: 0.5rem;
+    }
+}
+.form-actions {
+    padding: 19px 20px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: $color_wild_sand_approx;
+    border-top: 1px solid $mercury;
+}
+.project-dashboard {
+    [class^=icon-] {
+        vertical-align: middle !important;
+    }
+    [class*=" icon-"] {
+        vertical-align: middle !important;
+    }
+    .icon-btn-project {
+        height: 95px !important;
+        width: 128px !important;
+        margin: 5px 5px 0 0 !important;
+        border: 1px solid $color_alto_approx !important;
+        padding: 25px 0 0 !important;
+        background-color: $alabaster !important;
+        background-image: none !important;
+        filter: none !important;
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: none !important;
+        display: inline-block;
+        color: $color_storm_dust_approx !important;
+        //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        text-shadow: none !important;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: all 0.3s ease !important;
+        text-decoration: none;
+        div {
+            font-family: $font_0, $font_1;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            color: $color_storm_dust_approx;
+            font-size: 12px;
+            font-weight: 400;
+            word-wrap: normal;
+            position: relative;
+            height: 2.8em;
+            overflow: hidden;
+        }
+    }
+}
+table {
+    &.dataTable {
+        border-spacing: 0;
+        thead {
+            border: 1px solid $color_alto_approx;
+            th {
+                border-left: 1px solid $color_alto_approx !important;
+                border-bottom: none;
+                &:first-child {
+                    border-left: none !important;
+                }
+            }
+        }
+        tbody tr {
+            cursor: pointer;
+            td {
+                border-top: 1px solid $color_alto_approx;
+            }
+        }
+    }
+    &.table-advance thead tr th {
+        font-size: 14px;
+        font-weight: 400;
+        color: $color_storm_dust_approx;
+    }
+    &.table-striped tbody tr:nth-of-type(odd) {
+        background-color: $black_3;
+    }
+}
+.table {
+    td {
+        @extend %extend_8;
+    }
+    th {
+        @extend %extend_8;
+    }
+}
+body {
+    background-color: $alabaster !important;
+    color: $black;
+    font-family: $font_0, $font_1;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 14px;
+    line-height: 20px;
+}
+.clearfix {
+    &:after {
+        @extend %extend_9;
+    }
+    &:before {
+        @extend %extend_9;
+    }
+}
+a {
+    text-decoration: none;
+}
+.page-sidebar {
+    padding: 0;
+    background-color: $alabaster;
+}
+.btn {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0;
+    &.btn-purple {
+        color: $white !important;
+        background-color: $color_vivid_violet_approx !important;
+    }
+    &.btn-blue {
+        color: $white !important;
+        //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        text-shadow: none;
+        background-color: $color_cornflower_blue_approx !important;
+    }
+    &.btn-big {
+        font-size: 18px;
+        line-height: 38px;
+        padding: 8px 16px;
+    }
+    &.new-service-btn {
+        margin-bottom: 40px;
+    }
+    .fa {
+        vertical-align: middle;
+    }
+    .far {
+        vertical-align: middle;
+    }
+    .fas {
+        vertical-align: middle;
+    }
+    &.btn-mini {
+        height: 21px;
+        font-size: 11px !important;
+        line-height: 13px;
+        padding: 3px 10px;
+    }
+}
+.btn-icon {
+    border: 1px solid $color_alto_approx;
+    padding: 16px 0 0;
+    background-color: $alabaster !important;
+    background-image: none !important;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: none !important;
+    display: block !important;
+    color: $color_storm_dust_approx !important;
+    //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    text-shadow: none !important;
+    text-align: center;
+    position: relative;
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: all 0.3s ease !important;
+    &.btn-details {
+        float: none !important;
+        display: inline-block !important;
+    }
+    div {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        color: $black;
+        font-size: 11px;
+        font-weight: 300;
+    }
+}
+.note {
+    margin: 0 0 20px;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid $color_gallery_approx;
+    &.note-info {
+        background-color: $color_solitude_approx;
+        border-color: $color_picton_blue_approx;
+    }
+    &.note-warning {
+        background-color: $color_sazerac_approx;
+        border-color: $color_my_sin_approx;
+    }
+    &.note-danger {
+        @extend %extend_10;
+    }
+    &.note-error {
+        @extend %extend_10;
+    }
+    &.note-success {
+        background-color: $color_ottoman_approx;
+        border-color: $color_chateau_green_approx;
+    }
+}
+.dataTable {
+    .row-details {
+        margin-top: 3px;
+        display: inline-block;
+        cursor: pointer;
+        width: 14px;
+        height: 14px;
+        background: url($data_uri_0) no-repeat;
+        &.row-details-close {
+            background-position: 0 0 !important;
+        }
+        &.row-details-open {
+            background-position: 0 -23px !important;
+        }
+    }
+    tr.details {
+        background-color: transparent !important;
+    }
+    td.details {
+        padding: 1rem;
+        a.btn-icon {
+            margin-left: 1rem;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+}
+.project-dashboard-information {
+    margin-top: 3rem;
+    li {
+        overflow: hidden;
+        border-top: solid 1px $color_gallery_approx;
+        padding: 10px;
+        &:first-child {
+            border-top: none;
+        }
+        .project-info {
+            @extend %extend_12;
+        }
+        .hosting-info {
+            @extend %extend_12;
+        }
+        .project-num {
+            @extend %extend_13;
+        }
+        .hosting-num {
+            @extend %extend_13;
+        }
+    }
+    .progress {
+        margin-bottom: 0;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 0;
+    }
+}
+
+.bg-host {
+    background-color: $color_cape_cod_approx !important;
+}
+
+@media(min-width: 980px) {
+    .page-boxed {
+        background-color: $color_gray_nurse_approx !important;
+        .page-content {
+            border-left: 1px solid $color_bon_jour_approx;
+            border-bottom: 1px solid $color_bon_jour_approx;
+        }
+    }
+}
+
+input[type=text].m-wrap {
+    @extend %extend_5;
+}
+input[type=password].m-wrap {
+    @extend %extend_5;
+}
+input[type=datetime].m-wrap {
+    @extend %extend_5;
+}
+input[type=datetime-local].m-wrap {
+    @extend %extend_5;
+}
+input[type=date].m-wrap {
+    @extend %extend_5;
+}
+input[type=month].m-wrap {
+    @extend %extend_5;
+}
+input[type=time].m-wrap {
+    @extend %extend_5;
+}
+input[type=week].m-wrap {
+    @extend %extend_5;
+}
+input[type=number].m-wrap {
+    @extend %extend_5;
+}
+input[type=email].m-wrap {
+    @extend %extend_5;
+}
+input[type=url].m-wrap {
+    @extend %extend_5;
+}
+input[type=tel].m-wrap {
+    @extend %extend_5;
+}
+input[type=color].m-wrap {
+    @extend %extend_5;
+}
+input[type=search].m-wrap {
+    @extend %extend_5;
+}
+textarea.m-wrap {
+    @extend %extend_5;
+}
+
+input.m-wrap {
+    border: 1px solid $mercury;
+}
+
+.select2-container--default .select2-selection--single {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0 !important;
+    &:focus {
+        outline: none !important;
+    }
+    .select2-selection__arrow {
+        border-left: 1px solid $color_silver_chalice_approx;
+    }
+}
+
+.paginate_button.page-item {
+    .page-link {
+        color: $color_mountain_mist_approx !important;
+        &:focus {
+            box-shadown: none !important;
+        }
+    }
+    &.active a {
+        background-color: $color_wild_sand_approx !important;
+        border: 1px solid $color_mercury_approx !important;
+    }
+}
+
+ul.unstyled {
+    margin-left: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.page-navbar-fixed {
+    .page-container {
+        margin-top: 42px;
+    }
+}
+
+@import "utilities";

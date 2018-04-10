@@ -1,0 +1,7 @@
+# Friendly URL
+<IfModule mod_rewrite.c>
+    
+    RewriteEngine On
+    
+</IfModule>
+# 

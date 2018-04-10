@@ -1,0 +1,30 @@
+$data_url: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAABWCAYAAADVJVbkAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAM1JREFUeNrsmFsKxCAMRRtxSe5/Be4pnYF+lMEppiZUZ44fBQvmaF5eFFXdIkd+f0opZkqtVboBlgXWDaUteCSvnc55ArcsunLLeW5JhK+As5HDuBz/F3FR40RxQb7j8+dc5FFUrSHR3XT9SgYAYJULB9kCIFa2jF6hucfICzqvbEmdRUUWIVsAAADwH83uTkOyCa/eBdYNPR4D3ouajyF6MRcPgHwYF1rFcLVOk0UaCZCfDTIAAMgWZAsAL9kydIVmDyMEGdkSK1t2AQYAa5tGM0Yy5xYAAAAASUVORK5CYII=');
+
+.dataTable {
+    .row-details {
+        margin-top: 3px;
+        display: inline-block;
+        cursor: pointer;
+        width: 14px;
+        height: 14px;
+        background: $data_url no-repeat;
+        &.row-details-close {
+            background-position: 0 0px !important;
+        }
+        &.row-details-open {
+            background-position: 0 -23px !important;
+        }
+    }
+    tr.details {
+        background-color: transparent!important;
+    }
+    td.details {
+        padding: 1rem;
+        a.btn-icon {
+            margin-left: 1rem;
+            &:first-child {
+                margin-left: 0; 
+            }
+        }
+    }
+}
