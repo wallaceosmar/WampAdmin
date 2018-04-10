@@ -24,35 +24,47 @@
  * THE SOFTWARE.
  */
 
-/**
- * 
- * @global array $wa_dashbord_card
- */
-function wa_dashboard() {
-    global $wa_dashbord_card;
-?>
-<!-- BEGIN DASHBOARD -->
-<div class="row">
+
+function _print_dashboard_card() {
+    global $wa_dashboard_card;
+    
+    if ( !isset( $wa_dashboard_card ) || empty( $wa_dashboard_card ) ) {
+        $wa_dashboard_card = array();
+    }
+    
+    foreach ( $wa_dashboard_card as $dashboard_item ):?>
     <!-- BEGIN DASHBOARD ITEM -->
     <div class="col-md-3">
         <div class="dashboard-stat blue">
-            <a class="list dashstat" href="<?php echo base_url('/list-project.php');?>" title="Project">
+            <a class="list dashstat" href="<?php echo $dashboard_item[1];?>" title="<?php echo $dashboard_item[0];?>">
                 <div class="visual">
                     <i class="fas fa-h-square"></i>
                 </div>
                 <div class="details">
-                    <div class="number">2</div>
-                    <div class="desc">Hospedagem </div>
+                    <div class="number"><?php echo $dashboard_item[3];?></div>
+                    <div class="desc"><?php echo $dashboard_item[0];?> </div>
                 </div>
             </a>
-            <a class="more" href="<?php echo base_url('/new-project.php');?>">
-                Nova hospedagem <i class="m-icon-swapright m-icon-white"></i>
+            <a class="more" href="<?php echo $dashboard_item[2];?>">
+                <?php echo $dashboard_item[4];?> <i class="m-icon-swapright m-icon-white"></i>
             </a>
         </div>
     </div>
     <!-- END DASHBOARD ITEM -->
+    <?php endforeach;
+}
+
+/**
+ * 
+ * @global array $wa_dashboard_card
+ */
+function wa_dashboard() {
+?>
+<!-- BEGIN DASHBOARD CARD -->
+<div class="row">
+    <?php _print_dashboard_card();?>
 </div>
-<!-- END DASHBOARD -->
+<!-- END DASHBOARD CARD -->
 <?php
 }
 
@@ -61,6 +73,6 @@ function wa_dashboard() {
  * @global array $wa_dashbord_card
  */
 function wa_dashboard_setup() {
-    global $wa_dashbord_card;
+    global $wa_dashboard_card;
 }
 

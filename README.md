@@ -9,7 +9,27 @@ Admin control Panel to WampServer
 
 # installation
 
-Donwload the project and install in the folder <code>apps</code>.
+Donwload the project and unzip in any folder you want.
+We recomend to unzip in the folder <code>apps</code> and create a alias with 
+the name <code>wampadmin</code>.
 
-Create a alias with the name <code>wampadmin</code>.
+# Issues
 
+* Project create|edit|delete does`t work.
+* Plugin page does`t work with some plugins.
+
+# Fetures
+
+* [ ] Project
+* * [ ] Create
+* * [ ] Edit
+* * [ ] Delete
+* * [x] Dashboard
+* * [ ] Details
+* [ ] Plugins
+* * [x] List
+* * [x] Activate
+* * [x] Deactivate
+* * [ ] Edit
+* * [ ] Upload
+* [x] Settings

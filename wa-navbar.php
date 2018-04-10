@@ -33,7 +33,7 @@
         
         <!-- BEGIN NAVBAR LOGO -->
         <a class="navbar-brand" href="<?php echo base_url('/');?>">
-            <img src="<?php echo base_url('/wa-content/img/wamp.png');?>" height="30" alt="">
+            <img src="<?php echo base_url('/wa-content/img/wamp-white.png');?>" height="30" alt="WampAdmin">
         </a>
         <!-- END NAVBAR LOGO -->
         
@@ -49,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
             <!-- BEGIN LEFT -->
-            <?php get_navbar('left'); ?>
+            <?php require_once ( ABSPATH . '/wa-navbar-left.php' ); ?>
             <!-- END LEFT -->
 
             <!-- --
@@ -60,7 +60,7 @@
             <!-- -->
 
             <!-- BEGIN RIGHT -->
-            <?php get_navbar('right'); ?>
+            <?php require_once ( ABSPATH . '/wa-navbar-right.php' ); ?>
             <!-- END RIGHT -->
             
         </div>

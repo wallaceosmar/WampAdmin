@@ -37,8 +37,10 @@ function _mu_plugin_knowledfebase_page_() { ?>
                 <div class="note note-info"><?php _e('This is a defaul FAQ database with comon question and response.');?></div>
             
                 <div class="row knowledgebase">
+                    
+                    <!-- BEGIN GROUP -->
                     <div class="col-md-4">
-                        <ul class="nav nav-tabs flex-column nav-inline" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs flex-column nav-inline" id="tab-faq-group" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="project-tab" data-toggle="tab" href="#project" role="tab" aria-controls="project" aria-selected="true">
                                     <i class="fas fa-users"></i> <?php _e('Projects');?></a>
@@ -53,8 +55,11 @@ function _mu_plugin_knowledfebase_page_() { ?>
                             </li>
                         </ul>
                     </div>
+                    <!-- END GROUP -->
+                    
+                    <!-- -->
                     <div class="col-md-8">
-                        <div class="tab-content" id="myTabContent">
+                        <div class="tab-content" id="tab-faq">
                             <!-- BEGIN PROJECT -->
                             <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="project-tab">
                                 <div class="card-accordion" id="accordion">
@@ -94,6 +99,8 @@ function _mu_plugin_knowledfebase_page_() { ?>
                             <!-- END SETTINGS -->
                         </div>
                     </div>
+                    <!-- -->
+                    
                 </div>
                 
                 <div class="clearfix"></div>

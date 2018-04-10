@@ -33,9 +33,9 @@ function get_footer( $name = null ) {
     
     $templates = array();
     if ( !empty( $name ) ) {
-        $templates[] = "footer-{$name}.php";
+        $templates[] = "wa-footer-{$name}.php";
     }
-    $templates[]    = 'footer.php';
+    $templates[]    = 'wa-footer.php';
     
     locate_template( $templates, true );
 }
@@ -49,9 +49,9 @@ function get_header( $name = null ) {
     
     $templates = array();
     if ( !empty( $name ) ) {
-        $templates[] = "header-{$name}.php";
+        $templates[] = "wa-header-{$name}.php";
     } 
-    $templates[] = 'header.php';
+    $templates[] = 'wa-header.php';
     
     locate_template( $templates, true );
 }
@@ -65,9 +65,9 @@ function get_navbar( $name = null ) {
     
     $templates = array();
     if ( !empty( $name ) ) {
-        $templates[] = "navbar-{$name}.php";
+        $templates[] = "wa-navbar-{$name}.php";
     }
-    $templates[] = 'navbar.php';
+    $templates[] = 'wa-navbar.php';
     
     locate_template( $templates, true);
 }
@@ -81,9 +81,9 @@ function get_sidebar( $name = null ) {
     
     $templates = array();
     if ( !empty( $name ) ) {
-        $templates[] = "sidebar-{$name}.php";
+        $templates[] = "wa-sidebar-{$name}.php";
     }
-    $templates[] = 'sidebar.php';
+    $templates[] = 'wa-sidebar.php';
     
     locate_template( $templates, true );
 }
