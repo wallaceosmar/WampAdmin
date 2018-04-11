@@ -3,7 +3,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2018 wallaceosmar.
+ * Copyright 2017 wallaceosmar.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,38 +24,15 @@
  * THE SOFTWARE.
  */
 
-return array(
-    /*
-    'example_input' => array(
-        'name' => __('Input example'),
-        'type' => 'input|select|textarea'
-        'attr' => array( 
-            'placeholder' => __('Input example')
-        ),
-        'description' => __('This is a example')
-    )
+/** Load WampAdmin Bootstrap */
+require_once ( dirname ( __FILE__ ) . '/admin.php' );
+
+$action = filter_input( INPUT_GET, 'action' );
+
+switch ( $action ) {
+default:
+    /**
+     * 
      */
-    
-    // Project default path
-    'default_project_dir' => array(
-        'name' => __('Project Path'),
-        'attr' => array(
-            'placeholder' => __('Project Path'),
-        ),
-<<<<<<< HEAD
-        'decription' => __('WampAdmin default project path')
-=======
-        'decription' => ''
->>>>>>> dev-v2
-    ),
-    
-    // Default project name
-    'wamp_admin_project_filename' => array(
-        'name' => __('Project Filename'),
-        'attr' => array(
-            'placeholder' => __('Filename')
-        ),
-        'description' => __('WampAdmin default project config filename')
-    )
-    
-);
+    header_redirect( base_url( $parent_file) );
+}
