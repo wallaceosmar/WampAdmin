@@ -1,5 +1,4 @@
 # WampAdmin
-<<<<<<< HEAD
 
 [![license](https://img.shields.io/github/license/wallaceosmar/WampAdmin.svg?style=flat-square)](https://github.com/wallaceosmar/WampAdmin/blob/master/LICENSE)
 [![Github Releases](https://img.shields.io/github/downloads/wallaceosmar/WampAdmin/latest/total.svg?style=flat-square)](https://github.com/wallaceosmar/WampAdmin/releases/latest)

@@ -42,11 +42,7 @@ return array(
         'attr' => array(
             'placeholder' => __('Project Path'),
         ),
-<<<<<<< HEAD
         'decription' => __('WampAdmin default project path')
-=======
-        'decription' => ''
->>>>>>> dev-v2
     ),
     
     // Default project name
