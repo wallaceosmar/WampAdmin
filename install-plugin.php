@@ -28,11 +28,35 @@
 require_once ( dirname ( __FILE__ ) . '/admin.php' );
 
 $action = filter_input( INPUT_GET, 'action' );
+if ( isset( $_POST['plugins'] ) ) {
+    $plugin = filter_input( INPUT_POST, 'plugins');
+} elseif( $_GET['plugins'] ) {
+    $plugin = filter_input( INPUT_GET, 'plugins');
+} else {
+    $plugin = null;
+}
 
 switch ( $action ) {
+case 'activate':
+    $result = activate_plugin($plugin);
+    if ( is_wa_error( $result ) ) {
+        http_response_code(404);
+        break;
+    }
+    http_response_code(200);
+    break;
+case 'deactivate':
+    $result = deactivate_plugins( $plugin, false );
+    if ( !$result ) {
+        http_response_code(404);
+        break;
+    }
+    http_response_code(200);
+    break;
 default:
     /**
      * 
      */
-    header_redirect( base_url( $parent_file) );
+    wa_redirect( base_url( '/plugin.php' ) );
 }
+exit;

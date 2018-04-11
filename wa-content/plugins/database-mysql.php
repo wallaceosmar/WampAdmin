@@ -29,6 +29,13 @@ function _mu_plugin_database_mysql_init_() {
             'icon-mysql fa-2x', '_mu_plugin_database_mysql_page_' );
 }
 
+function _plugin_mysqldeactivate_ () {
+    unregister_plugin_settings( __FILE__, 'username');
+    unregister_plugin_settings( __FILE__, 'password');
+    unregister_plugin_settings( __FILE__, 'host');
+    unregister_plugin_settings( __FILE__, 'port');
+}
+
 /**
  * 
  */
@@ -231,5 +238,6 @@ function _mu_plugin_database_mysql_load_ () {
 <?php });
 }
 
+register_deactivation_hook( __FILE__, '_plugin_mysqldeactivate_');
 add_action( 'load-wampadmin_page_wampadmin-mysql', '_mu_plugin_database_mysql_load_');
 add_action( 'wamp_init', '_mu_plugin_database_mysql_init_');

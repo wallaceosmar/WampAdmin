@@ -114,22 +114,31 @@ function register_wampadmin_setting( $file, $slugname, $title, $attr = array(), 
 
 /**
  * 
- * 
  * @global array $wa_settings_options
  * 
- * @param string $slugname
+ * @param type $file
+ * @param type $slugname
  * 
- * @return bool
+ * @return type
  */
-function unregister_wampadmin_settings( $slugname ) {
-    global $wa_settings_options, $unregistered_settings_options;
+function unregister_wampadmin_settings( $file, $slugname ) {
+    global $wa_settings_options;
     
-    unset( $wa_settings_options[ $slugname ] );
-    $unregistered_settings_options[] = $unregistered_settings_options;
+    unset( $wa_settings_options[ $file ][ $slugname ] );
     
     /**
      * 
      */
     return delete_option( $slugname );
+    
+    /**
+     * 
+     */
+    do_action( 'unregister_settings' );
+    
+    /**
+     * 
+     */
+    do_action( "unregister_{$file}_settings" );
 }
 

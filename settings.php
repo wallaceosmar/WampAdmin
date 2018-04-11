@@ -100,7 +100,7 @@ get_header(); ?>
     ?>><option value="null"><?php _e('Select option');?></option><?php
     if ( isset( $settings['attr']['value'] ) ):
         foreach ( $settings['attr']['value'] as $value => $name ):
-            $selected = ( ( $value == get_option( $option_key, null ) ) ? ' selected' : '' );
+            $selected = ( ( $value == get_option( $option_key, ( isset( $settings['default_value'] ) ? $settings['default_value'] : null) ) ) ? ' selected' : '' );
             echo "<option value='{$value}'{$selected}>{$name}</option>";
         endforeach;
         unset( $value, $name );
@@ -122,7 +122,7 @@ get_header(); ?>
         
         if ( !isset( $settings['attr']['type'] ) ):
             echo ' type="text"';
-        endif; ?> name="<?php echo $option_key;?>" value="<?php echo get_option( $option_key, null );?>"><?php
+        endif; ?> name="<?php echo $option_key;?>" value="<?php echo get_option( $option_key, ( isset( $settings['default_value'] ) ? $settings['default_value'] : null) );?>"><?php
 endswitch;?>
                                         <?php if( isset( $settings['description'] ) && !empty( $settings['description'] ) ):?><span class="form-text text-muted help-inline"><?php echo $settings['description'];?></span><?php endif;?>
                                     </div>

@@ -91,6 +91,8 @@ function activate_plugin( $plugin, $redirect = '', $silent = false ) {
  * 
  * @param string|array $plugins Single plugin or list of plugins to deactivate.
  * @param type $silent Prevent calling deactivation hooks. Default is false.
+ * 
+ * @return bool Description
  */
 function deactivate_plugins( $plugins, $silent = false ) {
     $current = get_option( 'active_plugins', array() );
@@ -127,7 +129,7 @@ function deactivate_plugins( $plugins, $silent = false ) {
         
         
     }
-    update_option( 'active_plugins', $current);
+    return update_option( 'active_plugins', $current);
 }
 
 /**
@@ -302,6 +304,30 @@ function is_plugin_inactive( $plugin ) {
 }
 
 /**
+ * Set the activation hook for a plugin.
+ * 
+ * @param string $file The filename of the plugin including the path.
+ * @param callback $function The function hooked to the 'activate_PLUGIN' action.
+ */
+function register_activation_hook($file, $function) {
+    $file = plugin_basename($file);
+    
+    add_action('activate_' . $file, $function);
+}
+
+/**
+ * Set the deactivation hook for a plugin.
+ * 
+ * @param string $file The filename of the plugin including the path.
+ * @param callback $function The function hooked to the 'deactivate_PLUGIN' action.
+ */
+function register_deactivation_hook($file, $function) {
+    $file = plugin_basename($file);
+    
+    add_action('deactivate_' . $file, $function);
+}
+
+/**
  * 
  * @param type $file
  * @param type $slugname
@@ -317,6 +343,19 @@ function register_plugin_setting( $file, $slugname, $title, $attr = array(), $va
     $file_slug = str_replace( array( '.php', '-' ), array( '', '_' ), $file );
     
     register_wampadmin_setting( $file, $file_slug . '_plugin_' . $slugname, $title, $attr, $values, $form_type, $description );
+}
+
+/**
+ * 
+ * @param string $file
+ * @param string $slugname
+ */
+function unregister_plugin_settings ( $file, $slugname ) {
+    // Remove the file path and extension
+    $file = plugin_basename( $file );
+    $file_slug = str_replace( array( '.php', '-' ), array( '', '_' ), $file );
+    
+    unregister_wampadmin_settings($file, $file_slug . '_plugin_' . $slugname);
 }
 
 /**
@@ -363,6 +402,12 @@ function validate_plugin($plugin) {
     return 0;
 }
 
+/**
+ * 
+ * @global array $wa_plugin_paths
+ * 
+ * @param string $file
+ */
 function wa_register_plugin_realpath( $file ) {
     global $wa_plugin_paths;
 }

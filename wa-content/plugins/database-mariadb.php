@@ -11,27 +11,6 @@
 /**
  * 
  */
-function _mu_plugin_database_mariadb_init_() {
-    global $wa_project;
-    
-    register_plugin_setting( __FILE__, 'username', __('Database username'),
-            array(), null, null, __('MariaDB database username') );
-    register_plugin_setting( __FILE__, 'password', __('Database password'),
-            array( 'type' => 'password' ) , null, null, __('MariaDB database password') );
-    register_plugin_setting( __FILE__, 'host', __('Database host'),
-            array(), null, null, _('MariaDB hostname') );
-    register_plugin_setting( __FILE__, 'port', __('Database Port'),
-            array(), null, null, _('MariaDB Port') );
-    
-    // Add Dashboard Database page
-    add_database_page( __('MariaDB Database'), __('MariaDB Database'),
-            __FILE__ . '?project=' . $wa_project->project_folder ,
-            'icon-mariadb fa-2x', '_mu_plugin_database_mariadb_page_' );
-}
-
-/**
- * 
- */
 function _mu_plugin_database_mariadb_page_() {
     global $wa_project;
     
@@ -53,8 +32,8 @@ function _mu_plugin_database_mariadb_page_() {
                 <div class="col-12">
                     <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                     <h3 class="page-title">
-                        <?php _e('MySQL Databases');?> <small><?php _e('create a MySQL database, '
-                                . 'view a list of MySQL users and databases');?></small>
+                        <?php _e('MariaDB Databases');?> <small><?php _e('create a MariaDB database, '
+                                . 'view a list of MariaDB users and databases');?></small>
                     </h3>
                     <?php breadcrumb_print_element(); ?>
                     <!-- END PAGE TITLE & BREADCRUMB-->
@@ -83,7 +62,7 @@ function _mu_plugin_database_mariadb_page_() {
                         <div class="portlet-body form">
                             <form class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-4 control-label"><?php _e('MySQL Database name');?></label>
+                                    <label class="col-md-4 control-label"><?php _e('MariaDB Database name');?></label>
                                     <div class="col-md-8 controls">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -94,7 +73,7 @@ function _mu_plugin_database_mariadb_page_() {
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-4 control-label"><?php _e('MySQL Username');?></label>
+                                    <label class="col-md-4 control-label"><?php _e('MariaDB Username');?></label>
                                     <div class="col-md-8 controls">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -137,9 +116,9 @@ function _mu_plugin_database_mariadb_page_() {
                             <table class="table table-striped table-bordered table-advance" id="plugin_mariadb">
                                 <thead>
                                     <tr>
-                                        <th><?php _e('MySQL Database');?></th>
-                                        <th><?php _e('MySQL User');?></th>
-                                        <th><?php _e('MySQL Host');?></th>
+                                        <th><?php _e('MariaDB Database');?></th>
+                                        <th><?php _e('MariaDB User');?></th>
+                                        <th><?php _e('MariaDB Host');?></th>
                                         <th><?php _e('Disc Usage');?></th>
                                     </tr>
                                 </thead>
@@ -231,5 +210,34 @@ function _mu_plugin_database_mariadb_load_ () {
 <?php });
 }
 
+function _plugin_mariadb_deactivate_ () {
+    unregister_plugin_settings( __FILE__, 'username');
+    unregister_plugin_settings( __FILE__, 'password');
+    unregister_plugin_settings( __FILE__, 'host');
+    unregister_plugin_settings( __FILE__, 'port');
+}
+
+/**
+ * 
+ */
+function _mu_plugin_database_mariadb_init_() {
+    global $wa_project;
+    
+    register_plugin_setting( __FILE__, 'username', __('Database username'),
+            array(), null, null, __('MariaDB database username') );
+    register_plugin_setting( __FILE__, 'password', __('Database password'),
+            array( 'type' => 'password' ) , null, null, __('MariaDB database password') );
+    register_plugin_setting( __FILE__, 'host', __('Database host'),
+            array(), null, null, _('MariaDB hostname') );
+    register_plugin_setting( __FILE__, 'port', __('Database Port'),
+            array(), null, null, _('MariaDB Port') );
+    
+    // Add Dashboard Database page
+    add_database_page( __('MariaDB Database'), __('MariaDB Database'),
+            __FILE__ . '?project=' . $wa_project->project_folder ,
+            'icon-mariadb fa-2x', '_mu_plugin_database_mariadb_page_' );
+}
+
+register_deactivation_hook( __FILE__ , '_plugin_mariadb_deactivate_');
 add_action( 'load-wampadmin_page_wampadmin-mariadb', '_mu_plugin_database_mariadb_load_');
 add_action( 'wamp_init', '_mu_plugin_database_mariadb_init_');

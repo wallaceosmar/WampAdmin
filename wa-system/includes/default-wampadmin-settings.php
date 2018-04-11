@@ -48,6 +48,7 @@ return array(
             'attr' => array(
                 'placeholder' => __('Project Path'),
             ),
+            'default_value' => WA_PROJECT_ROOT,
             'description' => __('WampAdmin default project path')
         ),
 
@@ -57,6 +58,7 @@ return array(
             'attr' => array(
                 'placeholder' => __('Filename')
             ),
+            'default_value' => 'wampadmin.conf',
             'description' => __('WampAdmin default project config filename')
         ),
     )
