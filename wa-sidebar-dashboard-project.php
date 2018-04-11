@@ -29,9 +29,10 @@
  * @global string $parent_file
  * @global string $submenu_file
  * @global array $dashboard_menu
- * @global \WA\Project\Project $project
+ * @global \WA\Project\Project $wa_project
  */
-global $parent_file, $submenu_file, $dashboard_sidebar_menus, $project;
+/* @var $wa_project \WA\Project\Project */
+global $parent_file, $submenu_file, $dashboard_sidebar_menus, $wa_project;
 
 ?>
     <div class="text-center" style="margin-top:25px;">
@@ -42,8 +43,17 @@ global $parent_file, $submenu_file, $dashboard_sidebar_menus, $project;
     <div class="portlet project-dashboard-information">
         <ul class="unstyled">
             <li class="text-center">
-                <span title="<?php echo $project->slug_name;?>">
-                    <a target="_blank" href="//<?php echo $project->slug_name;?>"><?php echo $project->slug_name;?> <i class="fas fa-external-link-alt"></i></a>
+                <span title="<?php echo $wa_project->project_folder;?>">
+<?php
+
+// Virtual host
+$virtualhost = $wa_project->project_folder;
+if ( !empty( $wa_project->virtualhosts ) ) {
+    $virtualhost = $wa_project->virtualhosts[0];
+}
+
+?>
+                    <a target="_blank" href="//<?php echo $virtualhost;?>"><?php echo $virtualhost;?> <i class="fas fa-external-link-alt"></i></a>
                 </span>
             </li>
 <?php foreach( (array) $dashboard_sidebar_menus as $dashboard_item ):?>

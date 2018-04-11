@@ -26,6 +26,8 @@
 
 namespace WA\System;
 
+use WA\Project\Project;
+
 /**
  * Description of WA_ProjectHandler
  *
@@ -41,12 +43,75 @@ class WA_ProjectHandler {
     public $projects_path;
     
     /**
+     * Store the name of the file of config of wampadmin
+     * 
+     * @var string 
+     */
+    public $project_filename;
+    
+    /**
      * Constructor.
      * 
      * @param string $path Project dir
      */
     public function __construct() {
-        @list( $this->projects_path ) = func_get_args();
+        @list( $this->projects_path, $this->project_filename ) = func_get_args();
+        if ( empty( $this->project_filename ) ) {
+            $this->project_filename = get_option( 'wamp_admin_project_filename', 'wampadmin.conf' );
+        }
+    }
+    
+    /**
+     * 
+     * @param type $project_data
+     * @return \WA\System\WA_Error
+     */
+    public function create_project( $project_data ) {
+        
+        if ( !isset( $project_data['project_folder'] ) || empty( $project_data['project_folder'] ) ) {
+            return new WA_Error( '' );
+        }
+        
+        // 
+        $project_folder = $project_data['project_folder'];
+        
+        // Clean the project datas
+        foreach ( array( 'ID' ) as $key ) {
+            if ( !isset( $project_data[$key] ) ) {
+                continue;
+            }
+            unset($project_data[$key]);
+        }
+        unset( $key );
+        
+        if ( !is_dir( "$this->projects_path/$project_folder" ) ) {
+            @mkdir( "$this->projects_path/$project_folder", 0755);
+            /**
+             * Fires after create the folders
+             */
+            $folders2create = apply_filters( 'project_folders_create_list', array( 'public_html' ) );
+            foreach ( $folders2create as $folder ) {
+                @mkdir( "$this->projects_path/$project_folder/$folder", 0755 );
+            }
+            unset( $folder );
+        }
+        
+        $defaults = array(
+            'ID' => substr( md5( $project_folder ), 0, 9),
+            'database' => array(),
+            'virtualhosts' => array()
+        );
+        
+        $filename = "$this->projects_path/$project_folder/$this->project_filename";
+        $project = new Project();
+        if( !$project->createProject( $filename,
+                wa_parse_args( $project_data, $defaults )) ) {
+            return new WA_Error();
+        }
+        
+        
+        
+        return $project->init($filename);
     }
     
     /**
@@ -54,16 +119,58 @@ class WA_ProjectHandler {
      * 
      * @param string $project_name
      * 
-     * @return boolean
+     * @return Project
      */
     public function get_project( $project_name ) {
+        $project = new Project;
+        
         $project_name = trim( $project_name );
-        if ( empty( $project_name ) ) {
-            return false;
+        if ( !empty( $project_name ) ) {
+            $project->init( "{$this->projects_path}/"
+            . "{$project_name}/{$this->project_filename}" );
         }
         
-        return get_datafile( "{$this->projects_path}/"
-            . "{$project_name}/wampadmin.conf" );
+        return $project;
+    }
+    
+    /**
+     * 
+     * @return array(\WA\Project\Project)
+     */
+    public function get_projects( $projects_dir = '' ) {
+        $wa_projects = array();
+        
+        $projects_dir = trim($projects_dir);
+        if ( empty( $projects_dir ) ) {
+            $projects_dir = $this->projects_path;
+        }
+        
+        // Files project directory
+        $project_dir = @ opendir( $projects_dir );
+        if ( $project_dir ) {
+            while (($dir = readdir( $project_dir ) ) !== false ) {
+                if ( ( '.' == substr( $dir, 0, 1) ) || !is_dir( $projects_dir . '/' . $dir ) ) {
+                    continue;
+                }
+                $project = $this->get_project( $dir );
+                if ( !$project->exists() ) {
+                    continue;
+                }
+                $wa_projects[] = $project;
+            }
+            closedir( $project_dir );
+        }
+        return $wa_projects;
+    }
+    
+    /**
+     * 
+     * @param Project $folder_name
+     * 
+     * @return bool
+     */
+    public function is_valid_project( $project ) {
+        return ( ( $project instanceof Project ) && $project->exists() );
     }
     
 }

@@ -4,7 +4,7 @@
  * Plugin Name: phpinfo
  */
 
-function mu_plugin_php_info_page() {
+function plugin_php_info_page() {
     
     wa_register_plain_script(function(){ ?>
 <script>
@@ -54,11 +54,8 @@ function mu_plugin_php_info_page() {
     <!-- END PAGE CONTAINER -->
 <?php }
 
-function mu_plugin_php_info_init() {
-    
+function plugin_php_info_init() {
     // Advanced
-    add_advanced_page( __('Title'), __('PHP Information'), __FILE__
-            . '?project=' . wa_get_current_project()->slug_name , 'icon-php fa-2x', 'mu_plugin_php_info_page');
-    
+    add_navbar_menu( __('PHP Information'), 'phpinfo', __FILE__, 'plugin_php_info_page', null, true);
 }
-add_action( 'wamp_init', 'mu_plugin_php_info_init');
+add_action( 'wamp_init', 'plugin_php_info_init');

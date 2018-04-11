@@ -29,9 +29,9 @@
  * @global string $parent_file
  * @global string $submenu_file
  * @global array $dashboard_menu
- * @global \WA\Project\Project $project
+ * @global \WA\Project\Project $wa_project
  */
-global $parent_file, $submenu_file, $dashboard_sidebar_menus, $project;
+global $parent_file, $submenu_file, $dashboard_sidebar_menus, $wa_project;
 
 ?>
     <div class="text-center" style="margin-top:25px;">

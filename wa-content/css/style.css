@@ -78,7 +78,7 @@ input[type=text].m-wrap, input[type=password].m-wrap, input[type=datetime].m-wra
   font-weight: 300; }
 
 .knowledgebase div[class^="col-"]:last-child {
-  padding-left: 0px; }
+  margin-top: 1rem; }
 .knowledgebase .nav-inline {
   margin: 0;
   list-style: none; }
@@ -115,7 +115,10 @@ input[type=text].m-wrap, input[type=password].m-wrap, input[type=datetime].m-wra
   border: 1px solid transparent; }
 
 @media (min-width: 768px) {
-  .nav-inline .nav-item .nav-link.active:after {
+  .knowledgebase div[class^="col-"]:last-child {
+    padding-left: 0px;
+    margin-top: 0px !important; }
+  .knowledgebase .nav-inline .nav-item .nav-link.active:after {
     content: '';
     display: inline-block;
     border-bottom: 6px solid transparent;
@@ -330,7 +333,7 @@ input[type=text].m-wrap, input[type=password].m-wrap, input[type=datetime].m-wra
   margin-top: 0;
   margin-bottom: 25px;
   padding: 0; }
-  .portlet .portled-badge {
+  .portlet .portlet-badge {
     min-height: 14px;
     max-height: 39px;
     padding: .65em .7em;

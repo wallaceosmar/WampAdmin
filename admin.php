@@ -46,8 +46,9 @@ require_once ( dirname( __FILE__ ) . '/wa-load.php' );
  * @global string $pagenow
  * @global string $plugin_page
  * @global string $typenow
+ * @global \WA\Project\Project $wa_project
  */
-global $pagenow, $plugin_page, $typenow;
+global $pagenow, $plugin_page, $typenow, $wa_project;
 
 $page_hook = null;
 
@@ -90,7 +91,7 @@ if ( isset( $plugin_page ) ) {
          */
         do_action( "load-{$page_hook}" );
         if ( !isset( $_GET['noheader'] ) ) {
-            get_header();
+            require_once( ABSPATH . '/wa-header.php' );
         }
         
         /**
@@ -124,7 +125,7 @@ if ( isset( $plugin_page ) ) {
         }
         
     }
-    get_footer();
+    require_once ( ABSPATH . '/wa-footer.php' );
     exit;
 } else {
     

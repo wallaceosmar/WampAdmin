@@ -1,0 +1,13 @@
+@mixin portlet-color ( $colorname, $bgcolor, $fcolor : $white ) {
+    &.bg-#{$colorname} {
+        border: 1px solid $bgcolor;
+        .portlet-title {
+            color: $fcolor;
+            border-bottom: 1px solid $bgcolor;
+            background-color: $bgcolor;
+            i {
+                color: $fcolor !important;
+            }
+        }
+    }
+}

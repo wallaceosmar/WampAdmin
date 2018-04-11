@@ -28,6 +28,7 @@ return array(
     /*
     'example_input' => array(
         'name' => __('Input example'),
+        'type' => 'input|select|textarea'
         'attr' => array( 
             'placeholder' => __('Input example')
         ),
@@ -42,6 +43,15 @@ return array(
             'placeholder' => __('Project Path'),
         ),
         'decription' => ''
+    ),
+    
+    // Default project name
+    'wamp_admin_project_filename' => array(
+        'name' => __('Project Filename'),
+        'attr' => array(
+            'placeholder' => __('Filename')
+        ),
+        'description' => __('WampAdmin default project config filename')
     )
     
 );

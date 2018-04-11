@@ -1,33 +1,39 @@
 <?php
 
 /* 
- * Plugin Name: WampAdmin MySQL
- * Desription: Enable Access to MySQL
+ * Plugin Name: WampAdmin MariaDB
+ * Description: Manage the database for your project
+ * Author: wallaceosmar
+ * AuthorUri: wallace.osmar@hotmail.com
+ * Version: 0.1.0
  */
 
 /**
  * 
  */
-function _mu_plugin_database_mysql_init_() {
+function _mu_plugin_database_mariadb_init_() {
+    global $wa_project;
     
     register_plugin_setting( __FILE__, 'username', __('Database username'),
-            array(), null, null, __('MySQL database username') );
+            array(), null, null, __('MariaDB database username') );
     register_plugin_setting( __FILE__, 'password', __('Database password'),
-            array( 'type' => 'password' ) , null, null, __('MySQL database password') );
+            array( 'type' => 'password' ) , null, null, __('MariaDB database password') );
     register_plugin_setting( __FILE__, 'host', __('Database host'),
-            array(), null, null, _('MySQL hostname') );
+            array(), null, null, _('MariaDB hostname') );
+    register_plugin_setting( __FILE__, 'port', __('Database Port'),
+            array(), null, null, _('MariaDB Port') );
     
     // Add Dashboard Database page
-    add_database_page( __('MySQL Database'), __('MySQL Database'),
-            __FILE__ . '?project=' . wa_get_current_project()->slug_name ,
-            'icon-mysql fa-2x', '_mu_plugin_database_mysql_page_' );
+    add_database_page( __('MariaDB Database'), __('MariaDB Database'),
+            __FILE__ . '?project=' . $wa_project->project_folder ,
+            'icon-mariadb fa-2x', '_mu_plugin_database_mariadb_page_' );
 }
 
 /**
  * 
  */
-function _mu_plugin_database_mysql_page_() {
-    $project_id = substr( md5( wa_get_current_project()->slug_name ), 0, 9 );
+function _mu_plugin_database_mariadb_page_() {
+    global $wa_project;
     
 ?>
 
@@ -57,13 +63,14 @@ function _mu_plugin_database_mysql_page_() {
             <!-- END PAGE HEADER-->
 <?php try {
     
-    $pdoConnect = new PDO( 'mysql:hostname=' . get_plugin_settings( __FILE__, 'host', 'localhost'),
+    $pdoConnect = new PDO( 'mysql:hostname=' . get_plugin_settings( __FILE__, 'host', 'localhost') . ';port=' .
+            get_plugin_settings( __FILE__, 'port', '3307'),
             get_plugin_settings( __FILE__, 'username', 'root'),
             get_plugin_settings( __FILE__, 'password', ''));
     
     // List the users
     $statement = $pdoConnect->prepare('SELECT * FROM `mysql`.`user` WHERE `Host` = ?;');
-    $statement->bindValue( 1, "%{$project_id}%");
+    $statement->bindValue( 1, "%{$wa_project->ID}%");
     $statement->execute();
 ?>
             <!-- BEGIN DATABASE CREATION -->
@@ -80,7 +87,7 @@ function _mu_plugin_database_mysql_page_() {
                                     <div class="col-md-8 controls">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text"><?php echo sprintf('u%s_', $project_id);?></div>
+                                                <div class="input-group-text"><?php echo sprintf('u%s_', $wa_project->ID);?></div>
                                             </div>
                                             <input name="db_name" value="" type="text" placeholder="<?php _e('Database');?>" class="m-wrap" tabindex="1" maxlength="5">
                                         </div>
@@ -91,7 +98,7 @@ function _mu_plugin_database_mysql_page_() {
                                     <div class="col-md-8 controls">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text"><?php echo sprintf('u%s_', $project_id);?></div>
+                                                <div class="input-group-text"><?php echo sprintf('u%s_', $wa_project->ID);?></div>
                                             </div>
                                             <input name="username" value="" type="text" placeholder="<?php _e('Username');?>" class="m-wrap" tabindex="1" maxlength="5">
                                         </div>
@@ -124,10 +131,10 @@ function _mu_plugin_database_mysql_page_() {
                 <div class="col-12">
                     <div class="portlet portlet-box bg-yellow">
                         <div class="portlet-title">
-                            <div class="caption"><i class="fas fa-cogs"></i> <?php _e('Current MySQL Database and User List');?></div>
+                            <div class="caption"><i class="fas fa-cogs"></i> <?php _e('Current MariaDB Database and User List');?></div>
                         </div>
                         <div class="portlet-body">
-                            <table class="table table-striped table-bordered table-advance" id="plugin_mysql">
+                            <table class="table table-striped table-bordered table-advance" id="plugin_mariadb">
                                 <thead>
                                     <tr>
                                         <th><?php _e('MySQL Database');?></th>
@@ -163,7 +170,7 @@ function _mu_plugin_database_mysql_page_() {
     <!-- END PAGE CONTAINER -->
 <?php }
 
-function _mu_plugin_database_mysql_load_ () {
+function _mu_plugin_database_mariadb_load_ () {
     wa_register_plain_script(function(){ ?>
 <script>
      //@hack to show on all pages without modifying the lib
@@ -179,13 +186,13 @@ function _mu_plugin_database_mysql_load_ () {
         nCloneTd2.innerHTML = '<span>-</span>';
         
         // 
-        $('#plugin_mysql thead tr').each( function () {
+        $('#plugin_mariadb thead tr').each( function () {
             nCloneTh.width = '25px';
             elem = this.insertBefore( nCloneTh, this.childNodes[0] );
         });
         
         // 
-        $('#plugin_mysql tbody tr').each( function () {
+        $('#plugin_mariadb tbody tr').each( function () {
             elem = this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
         });
         
@@ -224,5 +231,5 @@ function _mu_plugin_database_mysql_load_ () {
 <?php });
 }
 
-add_action( 'load-wampadmin_page_wampadmin-mysql', '_mu_plugin_database_mysql_load_');
-add_action( 'wamp_init', '_mu_plugin_database_mysql_init_');
+add_action( 'load-wampadmin_page_wampadmin-mariadb', '_mu_plugin_database_mariadb_load_');
+add_action( 'wamp_init', '_mu_plugin_database_mariadb_init_');

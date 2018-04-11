@@ -15,13 +15,13 @@ the name <code>wampadmin</code>.
 
 # Issues
 
-* Project create|edit|delete does`t work.
+* Project edit|delete does`t work.
 * Plugin page does`t work with some plugins.
 
 # Fetures
 
 * [ ] Project
-* * [ ] Create
+* * [x] Create
 * * [ ] Edit
 * * [ ] Delete
 * * [x] Dashboard
@@ -32,4 +32,9 @@ the name <code>wampadmin</code>.
 * * [x] Deactivate
 * * [ ] Edit
 * * [ ] Upload
-* [x] Settings
+* [ ] Settings
+* * [x] Input text settings
+* * [ ] Input Checkbox
+* * [ ] Input radio button
+* * [ ] Select
+* * [ ] Textarea

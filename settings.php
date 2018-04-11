@@ -42,8 +42,6 @@ if ( is_method_post() ) {
     }
 }
 
-unregister_wampadmin_settings('teste_name');
-
 $title = __('Settings'); 
 $parent_file = 'settings.php';
 $submenu_file = 'settings.php';

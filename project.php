@@ -27,9 +27,11 @@
 /** Load WampAdmin Bootstrap */
 require_once ( dirname ( __FILE__ ) . '/admin.php' );
 
-$project = wa_get_current_project();
-if ( !$project ) {
-    
+if ( !is_project_page() ) {
+    /**
+     * 
+     */
+    wa_redirect('list-project.php');
 }
 
 // Add dashbord menu
@@ -39,11 +41,10 @@ $title = __('Dashboard');
 
 // 
 $parent_file = 'list-project.php';
-$submenu_file = get_project_page_base_url();
+$submenu_file = 'project.php';
 
-// admin-header.php
-get_header();
-?>
+// wa-header.php
+require_once ( ABSPATH . '/wa-header.php' ); ?>
     <!-- BEGIN SIDEBAR -->
     <div class="col-md-3 page-sidebar">
     <?php get_sidebar('dashboard-project'); ?>
@@ -136,4 +137,4 @@ endforeach;?>
         <!-- END PAGE CONTAINER-->
     </div>
     <!-- END PAGE CONTAINER -->
-<?php get_footer();
+<?php require_once( ABSPATH . '/wa-footer.php' );

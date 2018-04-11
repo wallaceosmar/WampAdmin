@@ -10,7 +10,7 @@ $knowledge_margin_left: 1rem;
 .knowledgebase {
     div[class^="col-"] {
         &:last-child {
-            padding-left: 0px;
+            margin-top: 1rem;
         }
     }
     .nav-inline {
@@ -58,14 +58,22 @@ $knowledge_margin_left: 1rem;
 }
 
 @include media( 768px ) {
-    .nav-inline .nav-item .nav-link.active:after {
-        content: '';
-        display: inline-block;
-        border-bottom: $nav-inline-link-active-after-border-size solid transparent;
-        border-top: $nav-inline-link-active-after-border-size solid transparent;
-        border-left: $nav-inline-link-active-after-border-size solid rgb(22, 158, 244);
-        position: absolute;
-        top: 12px;
-        right: -5px;
+    .knowledgebase {
+        div[class^="col-"] {
+            &:last-child {
+                padding-left: 0px;
+                margin-top: 0px !important;
+            }
+        }
+        .nav-inline .nav-item .nav-link.active:after {
+            content: '';
+            display: inline-block;
+            border-bottom: $nav-inline-link-active-after-border-size solid transparent;
+            border-top: $nav-inline-link-active-after-border-size solid transparent;
+            border-left: $nav-inline-link-active-after-border-size solid rgb(22, 158, 244);
+            position: absolute;
+            top: 12px;
+            right: -5px;
+        }
     }
 }

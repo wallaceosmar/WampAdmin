@@ -24,9 +24,20 @@
  * THE SOFTWARE.
  */
 
+/**
+ * 
+ * @global WA\System\WA_ProjectHandler $wa_projects
+ * 
+ * @param \WA\Project\Project $project_data
+ */
 function create_project ( $project_data = null ) {
     global $wa_projects;
     
+    if ( empty( $project_data ) || !is_array($wa_projects) ) {
+        $project_data = $_POST;
+    }
+    
+    return $wa_projects->create_project($project_data);
 }
 
 /**
@@ -46,14 +57,14 @@ function get_project( $project_folder ) {
  * Check the project directory and retrieve all
  *  project with plugin data.
  * 
- * @param string $project_folder Relative path to single plugin folder.
+ * @param string $project_folders Relative path to single project folder.
  * 
- * @return array
+ * @return array(\WA\Project\Project)
  */
-function get_projects( $project_folder = '' ) {
+function get_projects( $project_folders = '' ) {
     global $wa_projects;
     
-    return array();
+    return $wa_projects->get_projects( $project_folders );
 }
 
 /**
@@ -62,17 +73,21 @@ function get_projects( $project_folder = '' ) {
  */
 function get_project_page_base_url() {
     return 'project.php?' . http_build_query(array(
-        'project' => wa_get_current_project()->slug_name
+        'project' => wa_get_current_project()->project_folder
     )) ;
 }
 
 /**
  * Verify if a project is selected
  * 
+ * @global \WA\Project\Project $wa_project
+ * 
  * @return boolean
  */
 function is_project_page () {
-    return ( null !== filter_input( INPUT_GET, 'project' ) );
+    global $wa_project;
+    
+    return $wa_project->exists();
 }
 
 
