@@ -31,15 +31,10 @@ use WA\System\WA_Config;
  * @subpackage Settings
  */
 
-if ( !defined( 'DS' ) ) {
-    /**
-     * 
-     */
-    define( 'DS', DIRECTORY_SEPARATOR );
+/** System function folder */
+if ( !defined( 'WASYSFNC' ) ) {
+    define( 'WASYSFNC', WASYS . '/functions' );
 }
-
-define( 'WASYS', 'wa-system' );
-define( 'WASYSFNC', WASYS . '/functions' );
 
 // Include files required for initialization.
 require ( ABSPATH . WASYS . '/bootstrap.php' );
@@ -55,13 +50,6 @@ wa_initial_constants();
 require_once ( ABSPATH . WASYSFNC . '/functions.php' );
 require_once ( ABSPATH . WASYSFNC . '/options.php' );
 require_once ( ABSPATH . WASYSFNC . '/wampadmin.php' );
-
-/**
- * 
- */
-if ( defined( 'SHORTINT' ) && SHORTINT ) {
-    return;
-}
 
 /**
  * Initiate the WampServer configurations

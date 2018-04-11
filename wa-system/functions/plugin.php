@@ -313,9 +313,10 @@ function is_plugin_inactive( $plugin ) {
  */
 function register_plugin_setting( $file, $slugname, $title, $attr = array(), $values = '', $form_type = 'input', $description = '' ) {
     // Remove the file path and extension
-    $file = str_replace( array( '.php', '-' ), array( '', '_' ), plugin_basename( $file ) );
+    $file = plugin_basename( $file );
+    $file_slug = str_replace( array( '.php', '-' ), array( '', '_' ), $file );
     
-    register_wampadmin_setting( $file . '_plugin_' . $slugname, $title, $attr, $values, $form_type, $description );
+    register_wampadmin_setting( $file, $file_slug . '_plugin_' . $slugname, $title, $attr, $values, $form_type, $description );
 }
 
 /**

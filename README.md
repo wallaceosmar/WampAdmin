@@ -36,5 +36,6 @@ the name <code>wampadmin</code>.
 * * [x] Input text settings
 * * [ ] Input Checkbox
 * * [ ] Input radio button
-* * [ ] Select
+* * [x] Select
 * * [ ] Textarea
+* * [x] Settings group

@@ -31,9 +31,10 @@ use WA\Project\Project;
 
 global $pagenow;
 
-// Which page are we? Pre default the index.php
+// Which page are we?
+// Pre default the index.php
 $pagenow = 'index.php';
-if ( preg_match('#([^/]+\.php)([?/].*?)?$#i', $_SERVER['PHP_SELF'], $self_matches)) {
+if ( preg_match('#([^/]+\.php)([?/].*?)?$#i', $_SERVER['PHP_SELF'], $self_matches) ) {
     $pagenow = strtolower($self_matches[1]);
 }
 unset( $self_matches );
@@ -64,7 +65,7 @@ $GLOBALS['wa_options'] = new WA_Options();
  * @name $wa_projects 
  */
 $GLOBALS['wa_projects'] = new WA_ProjectHandler(
-        get_option( 'default_project_dir', WA_PROJECT_ROOT )
+    get_option( 'default_project_dir', WA_PROJECT_ROOT )
 );
 
 /**
@@ -74,4 +75,5 @@ $GLOBALS['wa_projects'] = new WA_ProjectHandler(
  * 
  * @name $wa_project 
  */
-$GLOBALS['wa_project'] = $wa_projects->get_project( filter_input( INPUT_GET, 'project' ) );
+$GLOBALS['wa_project'] = $wa_projects
+        ->get_project( filter_input( INPUT_GET, 'project' ) );

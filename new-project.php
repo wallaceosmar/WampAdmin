@@ -75,7 +75,7 @@ require_once ( ABSPATH . '/wa-header.php' ); ?>
             <div class="container-fluid">
                 <div class="portlet portlet-box bg-blue">
                     <div class="portlet-title">
-                        <div class="caption"><i class="fas fa-cogs"></i> <?php _e('New Project');?></div>
+                        <div class="caption"><i class="fas fa-folder"></i> <?php _e('New Project');?></div>
                     </div>
                     <div class="portlet-body">
                         <form class="form-horizontal" method="POST" action="<?php echo base_url('/new-project.php');?>">

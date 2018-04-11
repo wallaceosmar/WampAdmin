@@ -25,18 +25,27 @@
  */
 
 /**
- * Define ABSPATH as this file's directory
+ * @package WampAdmin
  */
-if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+
+/** Shortcut to constant DIRECTORY_SEPARATOR */
+if ( !defined( 'DS' ) ) {
+    define( 'DS', DIRECTORY_SEPARATOR );
+}
+
+/** Absolute path to the WampAdmin directory */
+if ( !defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', dirname( __FILE__ ) . DS );
+}
+
+/** Define the name folder to the system folder */
+if ( !defined( 'WASYS' ) ) {
+    define( 'WASYS', 'wa-system' );
 }
 
 error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR |
         E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR );
 
-if ( file_exists( ABSPATH . 'wa-config.php' ) ) {
-    /**
-     * 
-     */
-    require_once ( ABSPATH . 'wa-config.php' );
-}
+
+/** Sets up WampAdmin vars and included files. */
+require_once( ABSPATH . '/wa-system/wa-settings.php' );

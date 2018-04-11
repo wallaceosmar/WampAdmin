@@ -65,6 +65,7 @@ function get_settings_options () {
  * 
  * @global array $wa_settings_options
  * 
+ * @param string $file
  * @param string $slugname
  * @param string $title
  * @param string $form_type
@@ -74,7 +75,7 @@ function get_settings_options () {
  * 
  * @return false;
  */
-function register_wampadmin_setting( $slugname, $title, $attr = array(), $values = '', $form_type = 'input', $description = '' ) {
+function register_wampadmin_setting( $file, $slugname, $title, $attr = array(), $values = '', $form_type = 'input', $description = '' ) {
     global $wa_settings_options;
     
     $slugname = trim( $slugname );
@@ -103,7 +104,12 @@ function register_wampadmin_setting( $slugname, $title, $attr = array(), $values
         'description' => $description
     );
     
-    $wa_settings_options[ $slugname ] = $new_settings;
+    // File parse
+    $file = plugin_basename( $file );
+    $file = project_basename( $file );
+    
+    // 
+    $wa_settings_options[ $file ][ $slugname ] = $new_settings;
 }
 
 /**

@@ -43,6 +43,7 @@ if ( is_method_post() ) {
 }
 
 $title = __('Settings'); 
+
 $parent_file = 'settings.php';
 $submenu_file = 'settings.php';
 
@@ -72,20 +73,39 @@ get_header(); ?>
             <!-- END PAGE HEADER-->
             
             <!-- BEGIN PAGE CONTENT-->
+<?php foreach( get_settings_options() as $settings_file => $settings_items ): ?>
             <div class="row">
                 <div class="col-12">
                     <div class="portlet portlet-box bg-pink">
                         <div class="portlet-title">
-                            <div class="caption"><i class="fas fa-cogs"></i> <?php _e('WampAdmin Settings');?></div>
+                            <div class="caption"><i class="fas fa-cogs"></i> <?php echo get_breadcrumb_item($settings_file);?></div>
                         </div>
                         <div class="portlet-body">
                             <form class="form-horizontal" method="POST" action="<?php echo base_url('/settings.php');?>">
-<?php foreach( get_settings_options() as $option_key => $settings ): ?>
+<?php foreach( $settings_items as $option_key => $settings ): ?>
                                 <div class="form-group row">
                                     <label class="col-md-4 control-label"><?php echo $settings['name'];?></label>
                                     <div class="col-md-8 controls">
 <?php switch( $settings['form'] ):
-    case 'select':
+    case 'select': ?><select class="form-control select2 m-wrap"<?php
+    foreach ( $settings['attr'] as $attr_name => $attr_value ):
+        // Continue if not alowed attribute name
+        if ( in_array( $attr_name , array( 'name', 'value', 'class' )) ) {
+            continue;
+        }
+        echo ' ' . $attr_name . '="' . $attr_value . '"';
+    endforeach;
+    // Print the name
+    echo "name='{$option_key}'";
+    ?>><option value="null"><?php _e('Select option');?></option><?php
+    if ( isset( $settings['attr']['value'] ) ):
+        foreach ( $settings['attr']['value'] as $value => $name ):
+            $selected = ( ( $value == get_option( $option_key, null ) ) ? ' selected' : '' );
+            echo "<option value='{$value}'{$selected}>{$name}</option>";
+        endforeach;
+        unset( $value, $name );
+    endif;
+    ?></select><?php
         break;
     case 'textare':
         break;
@@ -94,13 +114,15 @@ get_header(); ?>
         ?><input class="form-control"<?php
         if( isset( $settings['attr'] ) ):
             foreach ( $settings['attr'] as $attr_name => $attr_value ):
+                // Continue if not alowed attribute name
+                if ( in_array( $attr_name, array( 'name', 'value', 'class' )) ): continue; endif;
                 echo ' ' . $attr_name . '="' . $attr_value . '"';
             endforeach;
         endif;
         
         if ( !isset( $settings['attr']['type'] ) ):
             echo ' type="text"';
-        endif; ?> name="<?php echo $option_key;?>" value="<?php echo get_option( $option_key );?>"><?php
+        endif; ?> name="<?php echo $option_key;?>" value="<?php echo get_option( $option_key, null );?>"><?php
 endswitch;?>
                                         <?php if( isset( $settings['description'] ) && !empty( $settings['description'] ) ):?><span class="form-text text-muted help-inline"><?php echo $settings['description'];?></span><?php endif;?>
                                     </div>
@@ -114,10 +136,21 @@ endswitch;?>
                     </div>
                 </div>
             </div>
+<?php endforeach; ?>
             <!-- END PAGE CONTENT-->
             
         </div>
         <!-- END PAGE CONTAINER-->
     </div>
     <!-- END PAGE CONTAINER -->
-<?php get_footer();
+<?php
+
+wa_register_plain_script(function(){ ?>
+<script>
+$(document).ready(function(){
+    $('.select2').select2();
+});
+</script>
+<?php });
+
+include ( ABSPATH . '/wa-footer.php' );

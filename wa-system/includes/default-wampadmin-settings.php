@@ -24,34 +24,41 @@
  * THE SOFTWARE.
  */
 
-return array(
-    /*
-    'example_input' => array(
-        'name' => __('Input example'),
-        'type' => 'input|select|textarea'
-        'attr' => array( 
-            'placeholder' => __('Input example')
-        ),
-        'description' => __('This is a example')
+/*
+    'file name' => array(
+        'example_input' => array(
+            'name' => __('Input example'),
+            'form' => 'input|select|textarea'
+            'attr' => array( 
+                'placeholder' => __('Input example'),
+                'name' => 'not acepted',
+                'value' => 'acepted'
+            ),
+            'description' => __('This is a example')
+        )
     )
-     */
+*/
+
+return array(
     
-    // Project default path
-    'default_project_dir' => array(
-        'name' => __('Project Path'),
-        'attr' => array(
-            'placeholder' => __('Project Path'),
+    'settings.php' => array(
+        // Project default path
+        'default_project_dir' => array(
+            'name' => __('Project Path'),
+            'attr' => array(
+                'placeholder' => __('Project Path'),
+            ),
+            'description' => __('WampAdmin default project path')
         ),
-        'decription' => __('WampAdmin default project path')
-    ),
-    
-    // Default project name
-    'wamp_admin_project_filename' => array(
-        'name' => __('Project Filename'),
-        'attr' => array(
-            'placeholder' => __('Filename')
+
+        // Default project name
+        'wamp_admin_project_filename' => array(
+            'name' => __('Project Filename'),
+            'attr' => array(
+                'placeholder' => __('Filename')
+            ),
+            'description' => __('WampAdmin default project config filename')
         ),
-        'description' => __('WampAdmin default project config filename')
     )
     
 );

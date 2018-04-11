@@ -107,37 +107,6 @@ function breadcrumb_print_element() {
         echo '</li>';
     endforeach;
     echo '</ul>';
-    /*
-    // Invert the array
-    $breadcrumb = array_reverse($breadcrumb);
-    
-    echo '<ul class="breadcrumb">';
-    foreach ( (array) $breadcrumb as $item ):
-        // 0: Title 1: Slug Name
-        echo '<li class="breadcrumb-item">';
-        
-        // Verify if a icon is defined
-        if ( !empty( $item->icon ) ) {
-            echo "<i class='{$item->icon}'></i> ";
-        }
-        // Menu Hook
-        $menu_hook = get_plugin_page_hook( $item->link, 'admin.php');
-        $menu_file = $item->link;
-        if ( false !== ( $pos = strpos($menu_file, '?') ) ) {
-            $menu_file = substr($menu_file, 0, $pos);
-        }
-        if ( $item->active ) {
-            echo $item->name;
-        } elseif ( $menu_hook ) {
-            echo "<a href='admin.php?page={$item->link}'>{$item->name}</a>";
-        } else {
-            echo "<a href='{$item->link}'>{$item->name}</a>";
-        }
-               
-        echo '</li>';
-    endforeach;
-    echo '</ul>';
-     */
 }
 
 /**
@@ -169,4 +138,11 @@ function get_breadcrumb() {
     }
     
     return $wa_breadcrumb;
+}
+
+function get_breadcrumb_item( $filename ) {
+    global $wa_breadcrumb;
+    
+    return isset( $wa_breadcrumb[ $filename ] ) ?
+        $wa_breadcrumb[ $filename ][0] : $filename;
 }

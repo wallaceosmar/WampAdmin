@@ -27,21 +27,25 @@
 use WA\System\WA_Error;
 
 /**
+ * Group of functions to help to load WampAdmin dependency
+ * 
  * @package WampAdmin
  * @subpackage Load
  */
 
 /**
+ * Verify if the param parsed is equal to the http method
  * 
- * @param type $method
+ * @param string $method
  * 
- * @return type
+ * @return bool
  */
 function is_method ( $method ) {
     return ( strtoupper( $method ) == $_SERVER['REQUEST_METHOD'] );
 }
 
 /**
+ * If the http method is a POST
  * 
  * @param type $method
  * 
