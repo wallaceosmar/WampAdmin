@@ -60,23 +60,16 @@ if ( !function_exists( 'wa_get_current_project' ) ):
     /**
      * Get the current project
      * 
-     * @global WA\System\WA_ProjectHandler $wa_projects
+     * @global WA\Project\Project $wa_project
      * 
      * @staticvar \WA\Project\Project $project
      * 
      * @return \WA\Project\Project
      */
     function wa_get_current_project () {
+        global $wa_project;
         
-        static $project = null;
-        if ( null === $project ) {
-            global $wa_projects;
-            
-            $project = $wa_projects->get_project(
-                    filter_input( INPUT_GET, 'project' ));
-        }
-        
-        return $project;
+        return $wa_project;
     }
 endif;
 

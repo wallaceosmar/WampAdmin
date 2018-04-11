@@ -1,4 +1,5 @@
 # WampAdmin
+<<<<<<< HEAD
 
 [![license](https://img.shields.io/github/license/wallaceosmar/WampAdmin.svg?style=flat-square)](https://github.com/wallaceosmar/WampAdmin/blob/master/LICENSE)
 [![Github Releases](https://img.shields.io/github/downloads/wallaceosmar/WampAdmin/latest/total.svg?style=flat-square)](https://github.com/wallaceosmar/WampAdmin/releases/latest)
@@ -9,7 +10,32 @@ Admin control Panel to WampServer
 
 # installation
 
-Donwload the project and install in the folder <code>apps</code>.
+Donwload the project and unzip in any folder you want.
+We recomend to unzip in the folder <code>apps</code> and create a alias with 
+the name <code>wampadmin</code>.
 
-Create a alias with the name <code>wampadmin</code>.
+# Issues
 
+* Project edit|delete does`t work.
+* Plugin page does`t work with some plugins.
+
+# Fetures
+
+* [ ] Project
+* * [x] Create
+* * [ ] Edit
+* * [ ] Delete
+* * [x] Dashboard
+* * [ ] Details
+* [ ] Plugins
+* * [x] List
+* * [x] Activate
+* * [x] Deactivate
+* * [ ] Edit
+* * [ ] Upload
+* [ ] Settings
+* * [x] Input text settings
+* * [ ] Input Checkbox
+* * [ ] Input radio button
+* * [ ] Select
+* * [ ] Textarea

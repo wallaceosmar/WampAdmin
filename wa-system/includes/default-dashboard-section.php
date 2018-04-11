@@ -35,7 +35,7 @@
 
 // Section Projec
 $dashboard_section[2] = array( __('Project'), 'project-page.php', 'fas fa-info-circle' );
-$subdashboard_section[ 'project-page.php' ][0] = array( __('Details'), 'project-page.php?project=' . wa_get_current_project()->slug_name,
+$subdashboard_section[ 'project-page.php' ][0] = array( __('Details'), 'project-page.php?project=' . wa_get_current_project()->project_folder,
     __('Details'), 'fas fa-info fa-2x', false );
 
 // Section Virtual Hosts

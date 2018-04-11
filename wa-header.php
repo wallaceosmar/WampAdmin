@@ -90,7 +90,7 @@ $wamp_body_classes = apply_filters( 'wamp_body_class', '');
     <!-- /.preloader -->
     
     <!-- BEGIN HEADER -->
-    <?php get_navbar(); ?>
+    <?php require_once( ABSPATH . '/wa-navbar.php' ); ?>
     <!-- END HEADER -->
     
     <!-- BEGIN CONTAINER -->

@@ -30,21 +30,96 @@ namespace WA\Project;
  * Description of Project
  *
  * @author wallaceosmar <wallace.osmar@hotmail.com>
+ * 
+ * @version 0.2
+ * 
+ * @property string $ID Description
+ * @property array $database Description
+ * @property string $project_folder Description
+ * @property array $virtualhosts Description
  */
 class Project {
     
     /**
-     * Project path
-     *  
-     * @var string 
-     */
-    public $path;
-    
-    /**
-     * Default project slug name
+     * The absolute path to the project config file
      * 
      * @var string 
      */
-    public $slug_name;
+    private $filename;
+    
+    /**
+     * Contructor
+     * 
+     * @param string $filename
+     */
+    public function __construct( $filename = null ) {
+        if ( !empty( $filename ) ) {
+            $this->init( $filename );
+        }
+    }
+    
+    /**
+     * Give access to private variables
+     * 
+     * @param string $name
+     */
+    public function __get($name) {
+        return isset( $this->{$name} ) ? $this->{$name}: null;
+    }
+    
+    /**
+     * 
+     * @param type $name
+     * @param type $value
+     * 
+     * @return void
+     */
+    public function __set($name, $value) {
+        if ( 'filename' == $name ) {
+            return;
+        }
+        $this->{$name} = $value;
+    }
+    
+    /**
+     * 
+     * @param type $filename
+     * @param type $content
+     */
+    public static function createProject( $filename, $content ) {
+        return @file_put_contents($filename, maybe_serialize($content));
+    }
+    
+    /**
+     * Verify if the project exists
+     * 
+     * @return bool
+     */
+    public function exists() {
+        return ( !empty( $this->filename ) && file_exists( $this->filename ) );
+    }
+    
+    /**
+     * Init all the
+     * 
+     * @param string $filename
+     */
+    public function init( $filename ) {
+        if ( !file_exists( $filename ) ) {
+            trigger_error( sprintf( __('The file'), $filename ) );
+        }
+        $project_configs = get_datafile( $filename );
+        if ( !is_array( $project_configs ) ) {
+            return $this;
+        }
+        
+        foreach ( $project_configs as $key => $value ) {
+            $this->{$key} = $value;
+        }
+        
+        $this->filename = $filename;
+        
+        return $this;
+    }
     
 }

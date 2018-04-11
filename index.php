@@ -46,11 +46,11 @@ $parent_file = 'index.php';
 $submenu_file = 'index.php';
 
 // admin-header.php
-get_header();
+require_once ( ABSPATH . '/wa-header.php' );
 ?>  
     <!-- BEGIN SIDEBAR -->
     <div class="col-md-3 page-sidebar">
-    <?php get_sidebar(); ?>
+    <?php require_once ( ABSPATH . '/wa-sidebar.php' ); ?>
     </div>
     <!-- END SIDEBAR -->
     
@@ -83,4 +83,4 @@ get_header();
         <!-- END PAGE CONTAINER-->
     </div>
     <!-- END PAGE CONTAINER -->
-<?php get_footer();
+<?php include ( ABSPATH . '/wa-footer.php' );

@@ -54,7 +54,7 @@ function activate_plugin( $plugin, $redirect = '', $silent = false ) {
             wa_redirect( base_url('plugins.php') );
         }
         ob_start();
-        wa_register_plugin_realpath( WP_PLUGIN_DIR . '/' . $plugin );
+        wa_register_plugin_realpath( WA_PLUGIN_DIR . '/' . $plugin );
         $_wa_plugin_file = $plugin;
         include_once( WA_PLUGIN_DIR . '/' . $plugin );
         $plugin = $_wa_plugin_file;

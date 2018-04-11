@@ -49,14 +49,19 @@ $wa_breadcrumb['settings.php'] = array( __( 'Settings' ), 'settings.php', 'index
 if ( is_project_page() ) {
     
     // Add the project breadcrumb
-    $wa_breadcrumb['project.php'] = array( wa_get_current_project()->slug_name,
+    $wa_breadcrumb['project.php'] = array( wa_get_current_project()->project_folder,
         get_project_page_base_url(), 'list-project.php', null );
     
     // Database
     $wa_breadcrumb['database.php'] = array( __('Database'),
-        'database.php?project=' . wa_get_current_project()->slug_name, 'project.php', null );
+        'database.php?project=' . wa_get_current_project()->project_folder, 'project.php', null );
     
     // Advanced
     $wa_breadcrumb['advance.php'] = array( __('Advanced'),
-        'advanced.php?project=' . wa_get_current_project()->slug_name, 'project.php', null );
+        'advanced.php?project=' . wa_get_current_project()->project_folder, 'project.php', null );
+    
+    // Others
+    // Advanced
+    $wa_breadcrumb['others.php'] = array( __('Others'),
+        'others.php?project=' . wa_get_current_project()->project_folder, 'project.php', null );
 }

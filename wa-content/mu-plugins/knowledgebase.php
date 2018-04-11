@@ -37,8 +37,10 @@ function _mu_plugin_knowledfebase_page_() { ?>
                 <div class="note note-info"><?php _e('This is a defaul FAQ database with comon question and response.');?></div>
             
                 <div class="row knowledgebase">
+                    
+                    <!-- BEGIN GROUP -->
                     <div class="col-md-4">
-                        <ul class="nav nav-tabs flex-column nav-inline" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs flex-column nav-inline" id="tab-faq-group" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="project-tab" data-toggle="tab" href="#project" role="tab" aria-controls="project" aria-selected="true">
                                     <i class="fas fa-users"></i> <?php _e('Projects');?></a>
@@ -53,33 +55,67 @@ function _mu_plugin_knowledfebase_page_() { ?>
                             </li>
                         </ul>
                     </div>
+                    <!-- END GROUP -->
+                    
+                    <!-- -->
                     <div class="col-md-8">
-                        <div class="tab-content" id="myTabContent">
+                        <div class="tab-content" id="tab-faq">
                             <!-- BEGIN PROJECT -->
                             <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="project-tab">
                                 <div class="card-accordion" id="accordion">
                                     <div class="card">
-                                        <div class="card-header" id="headingOne">
+                                        <div class="card-header" id="h_1">
                                             <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#c_1" aria-expanded="true" aria-controls="c_1">
                                                     <?php _e('Project folder structure.');?>
                                                 </button>
                                             </h5>
                                         </div>
-                                        <div id="collapseOne" class="collapse collapsed" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div id="c_1" class="collapse collapsed" aria-labelledby="h_1" data-parent="#accordion">
                                             <div class="card-body">
                                                 <p>Folder strutcture.</p>
                                                 <dl class="row text-truncate">
-                                                    <dt class="col-sm-3"><code>/{$project_name}</code></dt>
-                                                    <dd class="col-sm-9">
+                                                    <dt class="col-4"><code>/{$project_name}</code></dt>
+                                                    <dd class="col-8">
                                                         <dl class="row">
-                                                            <dd class="col-sm-12"><code>/public_html</code></dd>
-                                                            <dd class="col-sm-12"><code>/logs</code></dd>
-                                                            <dd class="col-sm-12"><code>/cgi-bin (Optional)</code></dd>
-                                                            <dd class="col-sm-12"><code>/wampadmin.conf</code></dd>
+                                                            <dd class="col-12">/public_html</dd>
+                                                            <dd class="col-12">/wampadmin.conf</dd>
                                                         </dl>
                                                     </dd>
                                                 </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="h_2">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#c_2" aria-expanded="true" aria-controls="c_2">
+                                                    <?php _e('Project VirtualHost');?>
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="c_2" class="collapse collapsed" aria-labelledby="h_2" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <p><?php _e('The WampAdmin recomend to use this form of virtual host config');?></p>
+                                                <pre><code>
+&lt;VirtualHost *:80&gt;
+    
+    # ServerName
+    ServerName {$project_servername}
+    DocumentRoot "${INSTALL_DIR}/www/{$project_foldername}/public_html"
+
+    # Logs
+    CustomLog "${INSTALL_DIR}/www/{$project_foldername}/logs/one-access.log" combined
+    ErrorLog "${INSTALL_DIR}/www/{$project_foldername}/logs/one-error.log"
+
+    &lt;Directory  "${INSTALL_DIR}/www/{$project_foldername}/public_html/"&gt;
+        Options +Indexes +Includes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require local
+    &lt;/Directory&gt;
+    
+&lt;/VirtualHost&gt;
+                                                </code></pre>
                                             </div>
                                         </div>
                                     </div>
@@ -94,6 +130,8 @@ function _mu_plugin_knowledfebase_page_() { ?>
                             <!-- END SETTINGS -->
                         </div>
                     </div>
+                    <!-- -->
+                    
                 </div>
                 
                 <div class="clearfix"></div>
@@ -111,4 +149,5 @@ function _mu_plugin_knowledgebase_init_() {
     // Add the knowledgebase
     add_navbar_menu( __('Knowledge Base'), __('Help'), 'wampadmin-knowledgebase.php', '_mu_plugin_knowledfebase_page_');
 }
+
 add_action( 'wamp_init', '_mu_plugin_knowledgebase_init_');

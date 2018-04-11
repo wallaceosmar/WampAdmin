@@ -100,6 +100,7 @@ require( ABSPATH . WASYSINC . '/vars.php' );
 /**
  *
  * @global array $GLOBALS['wa_plugin_paths']
+ * 
  * @name $wa_plugin_paths 
  */
 $GLOBALS['wa_plugin_paths'] = array();

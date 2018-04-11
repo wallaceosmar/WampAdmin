@@ -75,94 +75,9 @@ $data_uri_0: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAABWCAYAAADVJVbk
         }
     }
 }
-.portlet {
-    clear: both;
-    margin-top: 0;
-    margin-bottom: 25px;
-    padding: 0;
-    .portled-badge {
-        min-height: 14px;
-        max-height: 39px;
-        padding: .65em .7em;
-        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-        border-radius: 0;
-    }
-    &.portlet-box {
-        padding: 0 !important;
-        .portlet-title {
-            padding: 8px 10px 2px;
-            border-bottom: 1px solid $color_gallery_approx;
-            margin-bottom: 0;
-        }
-        .portlet-body {
-            padding: 1rem;
-        }
-    }
-    &.bg-pink {
-        border: 1px solid $color_crimson_approx;
-        .portlet-title {
-            color: $white;
-            border-bottom: 1px solid $color_crimson_approx;
-            background-color: $color_crimson_approx;
-            i {
-                color: $white !important;
-            }
-        }
-    }
-    &.bg-blue {
-        border: 1px solid $color_cornflower_blue_approx;
-        .portlet-title {
-            color: $white;
-            border-bottom: 1px solid $color_cornflower_blue_approx;
-            background-color: $color_cornflower_blue_approx;
-            i {
-                color: $white !important;
-            }
-        }
-    }
-    &.bg-yellow {
-        border: 1px solid $color_yellow_orange_approx;
-        .portlet-title {
-            color: $white;
-            border-bottom: 1px solid $color_yellow_orange_approx;
-            background-color: $color_yellow_orange_approx;
-            i {
-                color: $white !important;
-            }
-        }
-    }
-    .portlet-title {
-        margin-bottom: 15px;
-        border-bottom: 1px solid $color_gallery_approx;
-        &:after {
-            @extend %extend_11;
-        }
-        &:before {
-            @extend %extend_11;
-        }
-        .caption {
-            display: inline-block;
-            font-size: 18px;
-            font-weight: 400;
-            margin: 0 0 7px;
-            padding: 0;
-            i {
-                margin-top: 5px;
-                display: inline-block !important;
-                font-size: 13px;
-                margin-right: 5px;
-                color: $color_storm_dust_approx;
-            }
-        }
-    }
-    .portlet-body {
-        clear: both;
-        padding: 0;
-    }
-    &.project-dashboard-information ul li {
-        padding: 0.5rem;
-    }
-}
+
+@import "portlet";
+
 .search-forms {
     margin-bottom: 25px;
     background: $color_catskill_white_approx;

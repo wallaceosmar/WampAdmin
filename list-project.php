@@ -76,9 +76,9 @@ get_header(); ?>
                                     </thead>
                                     <tbody>
                                         <?php foreach( get_projects() as $project_key => $project_item ):?>
-                                        <tr data-project-basename="<?php echo $project_key;?>">
-                                            <td><?php echo $project_item['Name']?></td>
-                                            <td><span class="badge portled-badge <?php echo $project_item['StateBadge'];?>"><?php echo $project_item['State'];?></span></td>
+                                        <tr data-project-basename="<?php echo $project_item->project_folder;?>">
+                                            <td><?php echo $project_item->project_folder;?></td>
+                                            <td><span class="badge portled-badge <?php //echo $project_item;?>"><?php //echo $project_item['State'];?></span></td>
                                             <td>
                                                 <a class="btn btn-purple btn-mini"><?php _e('Error');?></a>
                                             </td>

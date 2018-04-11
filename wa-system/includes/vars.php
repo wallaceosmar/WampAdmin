@@ -27,6 +27,7 @@
 use WA\System\WA_DataHandler;
 use WA\System\WA_Options;
 use WA\System\WA_ProjectHandler;
+use WA\Project\Project;
 
 global $pagenow;
 
@@ -65,3 +66,12 @@ $GLOBALS['wa_options'] = new WA_Options();
 $GLOBALS['wa_projects'] = new WA_ProjectHandler(
         get_option( 'default_project_dir', WA_PROJECT_ROOT )
 );
+
+/**
+ * Populate the project file
+ * 
+ * @global Project $GLOBALS['wa_project']
+ * 
+ * @name $wa_project 
+ */
+$GLOBALS['wa_project'] = $wa_projects->get_project( filter_input( INPUT_GET, 'project' ) );
