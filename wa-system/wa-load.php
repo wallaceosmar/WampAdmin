@@ -35,7 +35,7 @@ if ( !defined( 'DS' ) ) {
 
 /** Absolute path to the WampAdmin directory */
 if ( !defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', dirname( __FILE__ ) . DS );
+    define( 'ABSPATH', dirname( dirname( __FILE__ ) ) . DS );
 }
 
 /** Define the name folder to the system folder */
@@ -48,4 +48,4 @@ error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR |
 
 
 /** Sets up WampAdmin vars and included files. */
-require_once( ABSPATH . '/wa-system/wa-settings.php' );
+require_once( dirname ( __FILE__ ) . '/wa-settings.php' );

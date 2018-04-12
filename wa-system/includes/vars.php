@@ -24,8 +24,6 @@
  * THE SOFTWARE.
  */
 
-use WA\System\WA_DataHandler;
-use WA\System\WA_Options;
 use WA\System\WA_ProjectHandler;
 use WA\Project\Project;
 
@@ -38,24 +36,6 @@ if ( preg_match('#([^/]+\.php)([?/].*?)?$#i', $_SERVER['PHP_SELF'], $self_matche
     $pagenow = strtolower($self_matches[1]);
 }
 unset( $self_matches );
-
-/**
- * Data handler used to store files configuration
- * 
- * @global \WA\System\WA_DataHandler $GLOBALS['wa_file_handler']
- * 
- * @name $wa_file_handler 
- */
-$GLOBALS['wa_file_handler'] = new WA_DataHandler();
-
-/**
- * Handle all the options of the WampAdmin
- * 
- * @global \WA\System\WA_Options $GLOBALS['wa_options']
- * 
- * @name $wa_options 
- */
-$GLOBALS['wa_options'] = new WA_Options();
 
 /**
  * Handle of all functions of projects

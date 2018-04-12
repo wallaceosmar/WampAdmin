@@ -31,13 +31,12 @@ if ( is_method_post() ) {
     // Get the inputs
     $settings_inputs_list = array_keys($_POST);
     foreach ( $settings_inputs_list as $curropt ) {
-        
-        /**
-         * 
-         */
-        $value = apply_filters( "settings_{$curropt}",
-                filter_input( INPUT_POST, $curropt ), $current, $curropt );
-        
+        if ( is_array( $_POST[$curropt] ) ) {
+            $value = filter_input( INPUT_POST, $curropt, FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        } else {
+            $value = filter_input( INPUT_POST, $curropt, FILTER_DEFAULT );
+        }
+        $value = apply_filters( "settings_{$curropt}", $value, $curropt );
         update_option( $curropt, $value);
     }
 }
@@ -82,7 +81,11 @@ get_header(); ?>
                         </div>
                         <div class="portlet-body">
                             <form class="form-horizontal" method="POST" action="<?php echo base_url('/settings.php');?>">
-<?php foreach( $settings_items as $option_key => $settings ): ?>
+<?php
+foreach( $settings_items as $option_key => $settings ):
+    // Get the option value
+    $option_values = get_option( $option_key, ( isset( $settings['default_value'] ) ? $settings['default_value'] : null) );
+?>
                                 <div class="form-group row">
                                     <label class="col-md-4 control-label"><?php echo $settings['name'];?></label>
                                     <div class="col-md-8 controls">
@@ -100,7 +103,7 @@ get_header(); ?>
     ?>><option value="null"><?php _e('Select option');?></option><?php
     if ( isset( $settings['attr']['value'] ) ):
         foreach ( $settings['attr']['value'] as $value => $name ):
-            $selected = ( ( $value == get_option( $option_key, ( isset( $settings['default_value'] ) ? $settings['default_value'] : null) ) ) ? ' selected' : '' );
+            $selected = ( ( $value == $option_values ) ? ' selected' : '' );
             echo "<option value='{$value}'{$selected}>{$name}</option>";
         endforeach;
         unset( $value, $name );
@@ -110,19 +113,35 @@ get_header(); ?>
     case 'textare':
         break;
     case 'input':
+    case 'input:checbox':
+    case 'input:radio':
     default :
-        ?><input class="form-control"<?php
-        if( isset( $settings['attr'] ) ):
-            foreach ( $settings['attr'] as $attr_name => $attr_value ):
-                // Continue if not alowed attribute name
-                if ( in_array( $attr_name, array( 'name', 'value', 'class' )) ): continue; endif;
-                echo ' ' . $attr_name . '="' . $attr_value . '"';
-            endforeach;
-        endif;
-        
-        if ( !isset( $settings['attr']['type'] ) ):
-            echo ' type="text"';
-        endif; ?> name="<?php echo $option_key;?>" value="<?php echo get_option( $option_key, ( isset( $settings['default_value'] ) ? $settings['default_value'] : null) );?>"><?php
+        $typeinput = end( $typeinput = explode( ':', $settings['form']) );
+        switch ( $typeinput ):
+            case 'checbox':
+                $cn = 0;
+                foreach( $settings['attr']['value'] as $v_value => $v_name ):
+                    $input_id = sprintf( '%s-%s', $option_key, ++$cn);
+                ?><div class="custom-control custom-checkbox"><?php
+                    echo "<input name='{$option_key}[]' type='checkbox'"
+                    . ( in_array( $v_value, $option_values) ? ' checked ' : ' ' ) . "value='{$v_value}' class='custom-control-input' id='{$input_id}'>";
+                    echo "<label class='custom-control-label' for='{$input_id}'>{$v_name}</label>";
+                    ?></div><?php
+                endforeach;
+                break;
+            default;
+            ?><input class="form-control"<?php
+                if( isset( $settings['attr'] ) ):
+                    foreach ( $settings['attr'] as $attr_name => $attr_value ):
+                        // Continue if not alowed attribute name
+                        if ( in_array( $attr_name, array( 'name', 'value', 'class' )) ): continue; endif;
+                        echo ' ' . $attr_name . '="' . $attr_value . '"';
+                    endforeach;
+                endif;
+                if ( !isset( $settings['attr']['type'] ) ):
+                    echo ' type="text"';
+                endif; ?> name="<?php echo $option_key;?>" value="<?php echo $option_values;?>"><?php
+        endswitch;
 endswitch;?>
                                         <?php if( isset( $settings['description'] ) && !empty( $settings['description'] ) ):?><span class="form-text text-muted help-inline"><?php echo $settings['description'];?></span><?php endif;?>
                                     </div>

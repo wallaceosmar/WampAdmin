@@ -39,7 +39,7 @@ if ( !defined ( 'WA_ADMIN' ) ) {
 }
 
 // 
-require_once ( dirname( __FILE__ ) . '/wa-load.php' );
+require_once ( dirname( __FILE__ ) . '/wa-system/wa-load.php' );
 
 /**
  * 

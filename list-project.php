@@ -113,28 +113,6 @@ wa_register_plain_script(function(){
     //@hack to show on all pages without modifying the lib
     var initTableProjectList = function() {
         
-        /* Formating function for row details */
-        function fnFormatDetails(oTable, nTr) {
-            var bookmarks;
-            var aData = oTable.row(nTr).data();
-            var cData = $(nTr).parent('tr');
-            
-            var sOut = '<div class="container">';
-            sOut += '<div class="row justify-content-md-center">';
-            
-            sOut += '<a href="<?php echo base_url( 'project.php');?>?project='
-                    + cData.data('project-basename')
-                    + '" class="btn-icon col-md-2 btn-details">';
-            sOut += '<i class="fas fa-cogs fa-3x" style="height: 42px"></i>';
-            sOut += '<div><?php _e('Manage');?></div>';
-            sOut += '</a>';
-            
-            sOut += '</div>';
-            sOut += '</div>';
-            
-            return sOut;
-        }
-        
         /*
          * Insert a 'details' column to the table
          */
@@ -197,15 +175,22 @@ wa_register_plain_script(function(){
          * rather it is done here
          */
         $('#project_list').on('click', ' tbody td', function () {
-            if ( oTable.row( this ).child.isShown() ) {
+            var _this = this;
+            if ( oTable.row( _this ).child.isShown() ) {
                 /* This row is already open - close it */
-                $(this).parent().find('.row-details').addClass("row-details-close").removeClass("row-details-open");
-                oTable.row( this ).child.hide();
+                $( _this ).parent().find('.row-details').addClass("row-details-close").removeClass("row-details-open");
+                oTable.row( _this ).child.hide();
             } else {
                 /* Open this row */
-                $(this).parent().find('.row-details').addClass("row-details-open").removeClass("row-details-close");
+                $( _this ).parent().find('.row-details').addClass("row-details-open").removeClass("row-details-close");
                 //console.log( fnFormatDetails( oTable, nTr ) );
-                oTable.row( this ).child(fnFormatDetails( oTable, this ), 'details').show();
+                $.post( '<?php echo base_url('ajax-table-action.php', array( 'list-page' => 'project' ));?>',{
+                    project: $( _this ).parent('tr').data('project-basename')
+                }).done( function( data ) {
+                    oTable.row( _this )
+                            .child( data, 'details')
+                            .show();
+                });
             }
         });
     }

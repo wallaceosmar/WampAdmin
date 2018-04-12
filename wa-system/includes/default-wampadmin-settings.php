@@ -42,6 +42,7 @@
 return array(
     
     'settings.php' => array(
+        
         // Project default path
         'default_project_dir' => array(
             'name' => __('Project Path'),
@@ -61,6 +62,49 @@ return array(
             'default_value' => 'wampadmin.conf',
             'description' => __('WampAdmin default project config filename')
         ),
+        
+    ),
+    
+    'ajax-upload.php' => array(
+        
+        // Upload 
+        'upload_path_dir' => array(
+            'name' => __( 'Upload path' ),
+            'default_value' => WA_CONTENT_DIR . '/upload',
+            'description' => __( 'Upload directory' )
+        ),
+        
+        // Upload accepted origin
+        'upload_accepted_origins' => array(
+            'name' => __('Upload Accepted Origin'),
+            'form' => 'input:checbox',
+            'attr' => array(
+                'value' => array(
+                    'http://localhost' => 'http://localhost',
+                    'https://localhost' => 'https://localhost',
+                    'http://127.0.0.1' => 'http://127.0.0.1',
+                    'https://127.0.0.1' => 'https://127.0.0.1',
+                )
+            ),
+            'default_value' => array(),
+            'description' => __('WampAdmin upload accepted origin')
+        ),
+        
+        // Upload accept file extension
+        'upload_accepted_file_extension' => array(
+            'name' => __('Upload accepted file extension'),
+            'form' => 'input:checbox',
+            'attr' => array(
+                'value' => array(
+                    'png' => '.png',
+                    'jpg' => '.jpg',
+                    'gif' => '.gif',
+                    'zip' => '.zip',
+                )
+            ),
+            'default_value' => array(),
+            'description' => __('WampAdmin upload accepted file extension')
+        )
     )
     
 );

@@ -69,6 +69,14 @@ function is_wa_error( $object ) {
 
 /**
  * 
+ * @return string
+ */
+function get_server_protocol() {
+    return $_SERVER['SERVER_PROTOCOL'];
+}
+
+/**
+ * 
  * @return string|array
  */
 function wa_get_active_and_valid_plugins() {

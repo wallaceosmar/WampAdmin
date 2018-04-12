@@ -25,6 +25,8 @@
  */
 
 use WA\System\WA_Config;
+use WA\System\WA_DataHandler;
+use WA\System\WA_Options;
 
 /**
  * @package WampAdmin
@@ -50,6 +52,19 @@ wa_initial_constants();
 require_once ( ABSPATH . WASYSFNC . '/functions.php' );
 require_once ( ABSPATH . WASYSFNC . '/options.php' );
 require_once ( ABSPATH . WASYSFNC . '/wampadmin.php' );
+require_once ( ABSPATH . WASYSFNC . '/file.php' );
+
+// Attach the default filters.
+require_once ( ABSPATH . WASYSINC . '/default-filters.php' );
+
+/**
+ * Data handler used to store files configuration
+ * 
+ * @global \WA\System\WA_DataHandler $GLOBALS['wa_file_handler']
+ * 
+ * @name $wa_file_handler 
+ */
+$GLOBALS['wa_file_handler'] = new WA_DataHandler();
 
 /**
  * Initiate the WampServer configurations
@@ -60,8 +75,19 @@ require_once ( ABSPATH . WASYSFNC . '/wampadmin.php' );
  */
 $GLOBALS['wa_config'] = new WA_Config();
 
-// Attach the default filters.
-require_once ( ABSPATH . WASYSINC . '/default-filters.php' );
+/**
+ * Handle all the options of the WampAdmin
+ * 
+ * @global \WA\System\WA_Options $GLOBALS['wa_options']
+ * 
+ * @name $wa_options 
+ */
+$GLOBALS['wa_options'] = new WA_Options();
+
+// Stop load 
+if ( SHORTINT ) {
+    return;
+}
 
 // Load the L10n library.
 require_once( ABSPATH . WASYSFNC . '/l10n.php' );
@@ -77,7 +103,6 @@ require_once ( ABSPATH . WASYSFNC . '/general-template.php' );
 require_once ( ABSPATH . WASYSFNC . '/dashboard-section.php' );
 require_once ( ABSPATH . WASYSFNC . '/nav-menu.php' );
 require_once ( ABSPATH . WASYSFNC . '/page.php' );
-require_once ( ABSPATH . WASYSFNC . '/file.php' );
 
 // Plugin Constants
 wa_plugin_directory_constants();
